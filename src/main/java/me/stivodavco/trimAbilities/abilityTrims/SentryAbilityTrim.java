@@ -33,6 +33,9 @@ public class SentryAbilityTrim extends AbilityTrim {
             @Override
             public void run() {
                 if (active) {
+                    if (getOwner() == null) {
+                        return;
+                    }
                     List<Entity> nearbyEntities = getOwner().getNearbyEntities(5,5,5);
 
                     for (Entity entity : nearbyEntities) {

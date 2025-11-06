@@ -6,7 +6,6 @@ import me.stivodavco.trimAbilities.listeners.AbilityListener;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
