@@ -17,6 +17,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class AbilityListener implements Listener {
     // GENERAL (FOR EVERY TRIM)
@@ -33,37 +35,20 @@ public class AbilityListener implements Listener {
     }
 
     @EventHandler
-    public void onArmorChange (PlayerArmorChangeEvent e) {
-        Player player = e.getPlayer();
+    public void onJoin(PlayerJoinEvent e) {
+        ArmorUtils.equipTrimIfPresent(e.getPlayer());
+    }
 
-        AbilityTrim trim = ArmorUtils.getActiveTrim(player);
-
-        if (trim != null) {
-            if (Storage.getAbilityTrim(player) == null) {
-                // Send message & play sound that the trim was equipped if it was not already equipped
-                player.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
-                        .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
-                );
-                player.playSound(player.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
-
-                // register the trim
-                trim.setOwner(player);
-                Storage.setActiveTrim(player, trim);
-            }
-        } else {
-            AbilityTrim earlierTrim = Storage.getAbilityTrim(player);
-            if (earlierTrim != null) {
-                // Send message & play sound that the trim was unequipped if it was already equipped
-                player.sendMessage(Component.text("Trim Unequipped ").color(NamedTextColor.DARK_RED).decorate(TextDecoration.BOLD)
-                        .append(Component.text("You lost the abilities of the " + earlierTrim.getName() + " armor trim.").color(NamedTextColor.RED).decoration(TextDecoration.BOLD, false))
-                );
-                player.playSound(player.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
-
-                earlierTrim.disable();
-                Storage.setActiveTrim(player, null);
-                player.sendActionBar(Component.empty());
-            }
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e) {
+        if (Storage.getAbilityTrim(e.getPlayer()) != null) {
+            Storage.setActiveTrim(e.getPlayer(), null);
         }
+    }
+
+    @EventHandler
+    public void onArmorChange (PlayerArmorChangeEvent e) {
+        ArmorUtils.equipTrimIfPresent(e.getPlayer());
     }
 
 

@@ -1,7 +1,11 @@
 package me.stivodavco.trimAbilities.abilityTrims;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.enums.AbilityActivationType;
+import me.stivodavco.trimAbilities.utilities.ParticleUtils;
+import org.bukkit.Color;
+import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -11,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DuneAbilityTrim extends AbilityTrim {
-    public final int RADIUS = 10;
+    public final double RADIUS = 10;
 
     // potion effects (in ticks)
     public final int BLINDNESS_DURATION = 100;
@@ -47,6 +51,12 @@ public class DuneAbilityTrim extends AbilityTrim {
                 player.addPotionEffects(effects);
             }
         }
+
+        ParticleBuilder particle = new ParticleBuilder(Particle.DUST_COLOR_TRANSITION)
+                .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 10)
+                .count(3);
+
+        ParticleUtils.circlePlr(getOwner(), RADIUS / 2, particle);
 
         PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, SPEED_DURATION, SPEED_AMPLIF, false);
 

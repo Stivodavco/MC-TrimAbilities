@@ -1,11 +1,1 @@
-me\stivodavco\trimAbilities\abstractClasses\AbilityTrim.class
-me\stivodavco\trimAbilities\abilityTrims\DuneAbilityTrim.class
-me\stivodavco\trimAbilities\listeners\AbilityListener.class
-me\stivodavco\trimAbilities\utilities\RandomnessUtils.class
-me\stivodavco\trimAbilities\abilityTrims\SentryAbilityTrim$1.class
-me\stivodavco\trimAbilities\enums\AbilityActivationType.class
-me\stivodavco\trimAbilities\utilities\ArmorUtils.class
-me\stivodavco\trimAbilities\abilityTrims\SentryAbilityTrim.class
-me\stivodavco\trimAbilities\utilities\Storage.class
-me\stivodavco\trimAbilities\TrimAbilities$1.class
-me\stivodavco\trimAbilities\TrimAbilities.class
+me/stivodavco/trimAbilities/utilities/ParticleUtils.class
