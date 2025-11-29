@@ -57,3 +57,24 @@ Summons evoker fangs in a 3x3 radius around the block you are looking at.
 ### Silence
 #### Passive: _Silent & Sneaky_
 Unless a player is present in a 10 block radius around you, you are completely hidden to every player, including tablist, your character, armor, and tools you're holding. You have permanent invisibility. When you kill someone, your name is not revealed. Placing or breaking blocks is silent.
+
+### Spire
+#### Passive: _Feather Falling_
+You take half the fall damage as usual.
+#### Ability: _Levitation Shroud_
+All players in a 15 block radius get levitation for 10 seconds.  
+> Cooldown: 1m 30s
+
+### Rib
+#### Passive: _Tough Armor_
+When your armor is about to be damaged, there's a 50% chance that it does not get damaged.
+#### Ability: _Withering_
+Summon 3 wither skeletons that are friendly towards you and die after 20s.  
+> Cooldown: 1m 45s
+
+### Wild
+#### Passive: _Snake Bite_
+When attacking a player, there's a 30% chance you inflict poison for 2 seconds unless the player is already poisoned (therefore it does not reset the poison).
+#### Ability: __
+Summon 3 wither skeletons that are friendly towards you and die after 20s.  
+> Cooldown: 1m 45s
