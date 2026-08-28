@@ -20,7 +20,7 @@ public class SentryAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void ability() {
+    public void customAbility() {
         if (getOwner() == null) {
             throw new Error("Attempt to use the .ability() method on an AbilityTrim without an owner!");
         }

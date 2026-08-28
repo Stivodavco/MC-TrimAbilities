@@ -31,13 +31,7 @@ public class DuneAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void ability() {
-        if (getOwner() == null) {
-            throw new Error("Attempt to use the .ability() method on an AbilityTrim without an owner!");
-        }
-        resetActivatedTime();
-        resetCooldown();
-
+    public void customAbility() {
         active = true;
 
         List<Entity> nearby =  getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS);
@@ -52,11 +46,13 @@ public class DuneAbilityTrim extends AbilityTrim {
             }
         }
 
-        ParticleBuilder particle = new ParticleBuilder(Particle.DUST_COLOR_TRANSITION)
-                .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 10)
-                .count(3);
+//        ParticleBuilder particle = new ParticleBuilder(Particle.DUST_COLOR_TRANSITION)
+//                .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 4)
+//                .count(3);
 
-        ParticleUtils.circlePlr(getOwner(), RADIUS / 2, particle);
+        ParticleBuilder particle = new ParticleBuilder(Particle.NOXIOUS_GAS).count(3);
+
+        ParticleUtils.sphere(getOwner().getLocation(), RADIUS, particle);
 
         PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, SPEED_DURATION, SPEED_AMPLIF, false);
 

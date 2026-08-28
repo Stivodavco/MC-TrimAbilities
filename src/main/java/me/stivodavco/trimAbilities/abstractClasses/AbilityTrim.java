@@ -95,7 +95,18 @@ public abstract class AbilityTrim {
         owner = player;
     }
 
-    public abstract void ability(); // runs the ability
+    public void ability() {
+        if (getOwner() == null) {
+            throw new Error("Attempt to use the .ability() method on an AbilityTrim without an owner!");
+        }
+
+        resetActivatedTime();
+        resetCooldown();
+
+        customAbility();
+    } // runs the ability
+
+    public abstract void customAbility();
 
     public abstract void disable(); // disables the ability (in case there is a BukkitRunnable running)
 

@@ -1,6 +1,6 @@
 name: TrimAbilities
 version: '1.0-SNAPSHOT'
 main: me.stivodavco.trimAbilities.TrimAbilities
-api-version: '1.21'
+api-version: '26.2'
 authors: [ Stivodavco ]
 description: Cool test plugin

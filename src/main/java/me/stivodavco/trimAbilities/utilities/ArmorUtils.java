@@ -1,6 +1,7 @@
 package me.stivodavco.trimAbilities.utilities;
 
 import me.stivodavco.trimAbilities.abilityTrims.DuneAbilityTrim;
+import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.abilityTrims.SentryAbilityTrim;
 import net.kyori.adventure.text.Component;
@@ -16,8 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-import static org.bukkit.inventory.meta.trim.TrimPattern.DUNE;
-import static org.bukkit.inventory.meta.trim.TrimPattern.SENTRY;
+import static org.bukkit.inventory.meta.trim.TrimPattern.*;
 
 public class ArmorUtils {
     public static ArmorTrim getTrim(ItemStack item) {
@@ -31,8 +31,9 @@ public class ArmorUtils {
 
     public static AbilityTrim getAbilityTrim(TrimPattern pattern) {
         return (pattern.equals(SENTRY) ? new SentryAbilityTrim(null)
-                : pattern.equals(DUNE) ? new DuneAbilityTrim(null) :
-                null
+                : pattern.equals(DUNE) ? new DuneAbilityTrim(null)
+                : pattern.equals(SNOUT) ? new SnoutAbilityTrim(null)
+                : null
                 );
     }
 

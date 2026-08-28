@@ -1,6 +1,8 @@
 package me.stivodavco.trimAbilities;
 
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
+import me.stivodavco.trimAbilities.commands.DebugCommands;
 import me.stivodavco.trimAbilities.enums.AbilityActivationType;
 import me.stivodavco.trimAbilities.listeners.AbilityListener;
 import me.stivodavco.trimAbilities.utilities.Storage;
@@ -23,6 +25,10 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
         instance = this;
         Bukkit.getPluginManager().registerEvents(this, this);
         Bukkit.getPluginManager().registerEvents(new AbilityListener(), this);
+
+        getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
+            commands.registrar().register(DebugCommands.createSetTrimCommand().build());
+        });
 
         // PASSIVE RUNNABLES
         new BukkitRunnable() {
