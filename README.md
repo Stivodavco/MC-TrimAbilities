@@ -118,3 +118,10 @@ TBD
 #### Ability: _TBD_
 TBD
 > Cooldown: TBD
+
+### Shaper | The trim of Earthbending
+#### Passive: _Quick Break_
+You always break blocks instantly.
+#### Ability: _Short Flight_
+You are given the ability to fly for 3 seconds.
+> Cooldown: 2m
