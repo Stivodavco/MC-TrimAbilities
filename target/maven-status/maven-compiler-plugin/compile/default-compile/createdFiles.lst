@@ -3,6 +3,7 @@ me/stivodavco/trimAbilities/TrimAbilities$1.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
+me/stivodavco/trimAbilities/listeners/AbilityListener$1.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim.class
 me/stivodavco/trimAbilities/inventoryHolders/BarterDiscardInvHolder.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim$1.class

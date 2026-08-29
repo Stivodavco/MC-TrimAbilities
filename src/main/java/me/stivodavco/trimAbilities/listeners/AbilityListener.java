@@ -11,6 +11,8 @@ import me.stivodavco.trimAbilities.utilities.ArmorUtils;
 import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -21,8 +23,11 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.PiglinBarterEvent;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -31,6 +36,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.awt.*;
 import java.util.List;
@@ -103,44 +109,70 @@ public class AbilityListener implements Listener {
     public void onPiglinBarter(PiglinBarterEvent e) { // SNOUT
         for (ItemStack item : e.getOutcome()) {
             item.editPersistentDataContainer(pdc -> {
-                NamespacedKey stackKey = new NamespacedKey(TrimAbilities.getInstance(), "barter_stack_amount");
+                NamespacedKey stackKey = new NamespacedKey(TrimAbilities.getInstance(), "barter_stack_size");
                 pdc.set(stackKey, PersistentDataType.INTEGER, item.getAmount());
             });
             ItemMeta meta = item.getItemMeta();
-            item.lore(List.of(Component.text("Bartered Item")));
+            meta.lore(List.of(
+                    Component.text("Bartered Item ").color(NamedTextColor.YELLOW).decoration(TextDecoration.ITALIC, false).decorate(TextDecoration.BOLD),
+                    Component.text("Refundable with Snout Ability Trim").color(NamedTextColor.GRAY),
+                    Component.text("Accept [Left Click]").color(NamedTextColor.GREEN).decoration(TextDecoration.ITALIC, false),
+                    Component.text("Refund [Shift + Left Click]").color(NamedTextColor.RED).decoration(TextDecoration.ITALIC, false)
+            ));
             item.setItemMeta(meta);
-            TrimAbilities.getInstance().getLogger().info(item.toString());
         }
     }
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e) {
-        if (e.getInventory().getHolder() instanceof BarterDiscardInvHolder && (e.getAction().equals(InventoryAction.PLACE_SOME) || e.getAction().equals(InventoryAction.PLACE_ALL) || e.getAction().equals(InventoryAction.PLACE_ONE)) ) {
-            TrimAbilities.getInstance().getLogger().info("Passed first");
-            ItemStack droppedItem = e.getCursor();
-            if (droppedItem != null) {
-                TrimAbilities.getInstance().getLogger().info("Valid dropped item");
-                PersistentDataContainerView pdc = droppedItem.getPersistentDataContainer();
+    public void onInventoryClick(InventoryClickEvent e) { // SNOUT
+        Player player = TrimAbilities.getInstance().getServer().getPlayer(e.getWhoClicked().getUniqueId());
+        ItemStack item = e.getCurrentItem();
 
-                NamespacedKey key = NamespacedKey.fromString("barter_stack_amount", TrimAbilities.getInstance());
-                if (key != null) {
-                    TrimAbilities.getInstance().getLogger().info("Key: " + key.asString());
-                    if (pdc.has(key)) {
-                        TrimAbilities.getInstance().getLogger().info("Has key!");
+        if (item != null && player != null && Storage.getAbilityTrim(player) instanceof SnoutAbilityTrim) {
+            TrimAbilities.getInstance().getLogger().info("Everything valid");
+            List<InventoryAction> illegalActions = List.of(InventoryAction.PICKUP_ONE, InventoryAction.PICKUP_SOME, InventoryAction.PICKUP_HALF, InventoryAction.PLACE_ONE, InventoryAction.PLACE_SOME, InventoryAction.PLACE_SOME_INTO_BUNDLE, InventoryAction.PICKUP_SOME_INTO_BUNDLE);
 
-                        if (pdc.get(key, PersistentDataType.INTEGER) < droppedItem.getAmount()) {
-                            TrimAbilities.getInstance().getLogger().info("Cancelling, less than amount required");
-                            e.setCancelled(true);
-                        } else {
-                            TrimAbilities.getInstance().getLogger().info("Give gold!");
-                            ItemStack gold = new ItemStack(Material.GOLD_INGOT);
-                            e.setCurrentItem(gold);
-                            //e.getInventory().setItem(e.getSlot(), gold);
-                            TrimAbilities.getInstance().getLogger().info(String.valueOf(e.getSlot()));
-                        }
-                    }
-                };
+            final ClickType ACCEPT_CLICK = ClickType.LEFT;
+            final ClickType REFUND_CLICK = ClickType.SHIFT_LEFT;
+
+            NamespacedKey key = NamespacedKey.fromString("barter_stack_size", TrimAbilities.getInstance());
+            assert key != null;
+
+            PersistentDataContainerView pdc = item.getPersistentDataContainer();
+
+            if (pdc.has(key)) {
+                if (illegalActions.contains(e.getAction())) {
+                    e.setCancelled(true);
+                } else if (e.getClick().equals(ACCEPT_CLICK)) {
+                    e.setCancelled(true);
+
+                    item.editPersistentDataContainer(editpdc -> {
+                        editpdc.remove(key);
+                    });
+                    ItemMeta meta = item.getItemMeta();
+                    meta.lore(null);
+                    item.setItemMeta(meta);
+                } else if (e.getClick().equals(REFUND_CLICK)) {
+                    e.setCancelled(true);
+
+                    e.setCurrentItem(null);
+                    player.give(ItemStack.of(Material.GOLD_INGOT).asQuantity(Math.floorDiv(item.getAmount(), pdc.get(key, PersistentDataType.INTEGER))));
+                }
             }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerDropItem(PlayerDropItemEvent e) { // SNOUT
+        ItemStack item = e.getItemDrop().getItemStack();
+
+        NamespacedKey key = NamespacedKey.fromString("barter_stack_size", TrimAbilities.getInstance());
+        assert key != null;
+
+        PersistentDataContainerView pdc = item.getPersistentDataContainer();
+
+        if (pdc.has(key)) {
+            e.setCancelled(true);
         }
     }
 }
