@@ -98,4 +98,11 @@ public class ArmorUtils {
             }
         }
     }
+
+    public static void equipTrimOverride(Player plr) {
+        if (Storage.getAbilityTrim(plr) != null) {
+            Storage.setActiveTrim(plr, null);
+            equipTrimIfPresent(plr);
+        }
+    }
 }

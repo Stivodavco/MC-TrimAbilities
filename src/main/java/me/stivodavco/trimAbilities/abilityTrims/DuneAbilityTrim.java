@@ -46,11 +46,9 @@ public class DuneAbilityTrim extends AbilityTrim {
             }
         }
 
-//        ParticleBuilder particle = new ParticleBuilder(Particle.DUST_COLOR_TRANSITION)
-//                .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 4)
-//                .count(3);
-
-        ParticleBuilder particle = new ParticleBuilder(Particle.NOXIOUS_GAS).count(3);
+        ParticleBuilder particle = new ParticleBuilder(Particle.DUST_COLOR_TRANSITION)
+                .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 4)
+                .count(3);
 
         ParticleUtils.sphere(getOwner().getLocation(), RADIUS, particle);
 

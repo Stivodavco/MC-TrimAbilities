@@ -28,6 +28,7 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
 
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
             commands.registrar().register(DebugCommands.createSetTrimCommand().build());
+            commands.registrar().register(DebugCommands.createReadyTrimCommand().build());
         });
 
         // PASSIVE RUNNABLES

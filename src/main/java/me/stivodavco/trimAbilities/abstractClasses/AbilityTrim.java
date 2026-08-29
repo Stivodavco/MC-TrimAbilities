@@ -34,6 +34,9 @@ public abstract class AbilityTrim {
         return ACTIVATION_TYPE;
     }
 
+    // returns the ActivationTime in seconds
+    public int getActivationTime() { return ACTIVATION_TIME; }
+
     // returns the remaining cooldown to be able to use the ability
     public int getCooldown() {
         if (getOwner() == null) {
