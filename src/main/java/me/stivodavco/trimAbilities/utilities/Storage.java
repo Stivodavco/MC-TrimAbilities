@@ -22,6 +22,11 @@ public class Storage {
                 activeTrim.replace(player, trim);
             }
         } else {
+            AbilityTrim prevTrim = getAbilityTrim(player);
+
+            if (prevTrim != null) {
+                prevTrim.disable();
+            }
             activeTrim.remove(player);
         }
     }

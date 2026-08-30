@@ -3,7 +3,13 @@ package me.stivodavco.trimAbilities.abilityTrims;
 import me.stivodavco.trimAbilities.enums.AbilityActivationType;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.TrimAbilities;
+import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
+import me.stivodavco.trimAbilities.utilities.Storage;
+import org.bukkit.Sound;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -21,9 +27,6 @@ public class SentryAbilityTrim extends AbilityTrim {
 
     @Override
     public void customAbility() {
-        if (getOwner() == null) {
-            throw new Error("Attempt to use the .ability() method on an AbilityTrim without an owner!");
-        }
         resetActivatedTime();
         resetCooldown();
 
@@ -33,9 +36,6 @@ public class SentryAbilityTrim extends AbilityTrim {
             @Override
             public void run() {
                 if (active) {
-                    if (getOwner() == null) {
-                        return;
-                    }
                     List<Entity> nearbyEntities = getOwner().getNearbyEntities(5,5,5);
 
                     for (Entity entity : nearbyEntities) {
@@ -58,9 +58,22 @@ public class SentryAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void disable() {
+    public void internalDisable() {
         if (runnable != null) {
             runnable.cancel();
+        }
+    }
+
+    /* EVENTS */
+    @EventHandler
+    public void onDamage(EntityDamageEvent e) { // SENTRY
+        if (e.getEntity() instanceof Player player) {
+            if (Storage.getAbilityTrim(player) instanceof SentryAbilityTrim) {
+                if (e.getDamageSource().getDirectEntity() instanceof Arrow && RandomnessUtils.chance(80)) {
+                    player.getWorld().playSound(player.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
+                    e.setCancelled(true);
+                }
+            }
         }
     }
 }

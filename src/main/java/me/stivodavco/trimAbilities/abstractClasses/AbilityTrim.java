@@ -1,11 +1,15 @@
 package me.stivodavco.trimAbilities.abstractClasses;
 
+import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.enums.AbilityActivationType;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbilityTrim {
+public abstract class AbilityTrim implements Listener {
     // General info (same for every instance of an AbilityTrim)
     public static int COOLDOWN = 0;
     public static AbilityActivationType ACTIVATION_TYPE = null;
@@ -89,7 +93,8 @@ public abstract class AbilityTrim {
     }
 
     // returns the owner
-    public @Nullable Player getOwner() {
+    public @NotNull Player getOwner() {
+        assert owner != null;
         return owner;
     }
 
@@ -99,10 +104,6 @@ public abstract class AbilityTrim {
     }
 
     public void ability() {
-        if (getOwner() == null) {
-            throw new Error("Attempt to use the .ability() method on an AbilityTrim without an owner!");
-        }
-
         resetActivatedTime();
         resetCooldown();
 
@@ -111,7 +112,12 @@ public abstract class AbilityTrim {
 
     public abstract void customAbility();
 
-    public abstract void disable(); // disables the ability (in case there is a BukkitRunnable running)
+    public void disable() {
+        HandlerList.unregisterAll(this);
+        internalDisable();
+    } // disables the ability (in case there is a BukkitRunnable running)
+
+    public abstract void internalDisable();
 
     public AbilityTrim(Player newOwner, int cooldown, AbilityActivationType activationType, int activationTime, String name, String abilityName) {
         owner = newOwner;
@@ -123,5 +129,7 @@ public abstract class AbilityTrim {
         ACTIVATION_TIME = activationTime;
         NAME = name;
         ABILITY_NAME = abilityName;
+
+        Bukkit.getPluginManager().registerEvents(this, TrimAbilities.getInstance());
     }
 }

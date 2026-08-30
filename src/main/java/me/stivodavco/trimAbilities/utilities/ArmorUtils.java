@@ -37,7 +37,7 @@ public class ArmorUtils {
                 );
     }
 
-    public static AbilityTrim getActiveTrim(@NotNull Player player) {
+    public static AbilityTrim getTrimIfValid(@NotNull Player player) {
         ItemStack helmet = player.getInventory().getHelmet();
         TrimPattern targetPattern = null;
         if (helmet != null) {
@@ -69,20 +69,18 @@ public class ArmorUtils {
     }
 
     public static void equipTrimIfPresent(Player plr) {
-        AbilityTrim trim = ArmorUtils.getActiveTrim(plr);
+        AbilityTrim trim = ArmorUtils.getTrimIfValid(plr);
 
-        if (trim != null) {
-            if (Storage.getAbilityTrim(plr) == null) {
-                // Send message & play sound that the trim was equipped if it was not already equipped
-                plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
-                        .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
-                );
-                plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+        if (trim != null && Storage.getAbilityTrim(plr) == null) {
+            // Send message & play sound that the trim was equipped if it was not already equipped
+            plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
+                    .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
+            );
+            plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
 
-                // register the trim
-                trim.setOwner(plr);
-                Storage.setActiveTrim(plr, trim);
-            }
+            // register the trim
+            trim.setOwner(plr);
+            Storage.setActiveTrim(plr, trim);
         } else {
             AbilityTrim earlierTrim = Storage.getAbilityTrim(plr);
             if (earlierTrim != null) {

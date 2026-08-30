@@ -58,7 +58,7 @@ public class DuneAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void disable() {
+    public void internalDisable() {
 
     }
 }
