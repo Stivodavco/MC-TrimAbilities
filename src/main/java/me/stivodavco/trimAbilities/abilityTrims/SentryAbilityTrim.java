@@ -26,6 +26,9 @@ public class SentryAbilityTrim extends AbilityTrim {
     }
 
     @Override
+    public void enable() {}
+
+    @Override
     public void customAbility() {
         resetActivatedTime();
         resetCooldown();

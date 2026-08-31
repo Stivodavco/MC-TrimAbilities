@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,8 +15,9 @@ public abstract class AbilityTrim implements Listener {
     public static int COOLDOWN = 0;
     public static AbilityActivationType ACTIVATION_TYPE = null;
     public static int ACTIVATION_TIME = 0;
-    public static String NAME = null;
-    public static String ABILITY_NAME = null;
+    public static String NAME = "Null";
+    public static String ABILITY_NAME = "Null";
+    public static TrimPattern PATTERN = null;
 
     // Active info (different for every instance of an AbilityTrim when they are already active and used by someone)
     public int cooldownLeft = 0; // cooldown left
@@ -41,11 +43,13 @@ public abstract class AbilityTrim implements Listener {
     // returns the ActivationTime in seconds
     public int getActivationTime() { return ACTIVATION_TIME; }
 
+    // returns the TrimPattern of this AbilityTrim
+    public static @NotNull TrimPattern getPattern() {
+        return PATTERN;
+    }
+
     // returns the remaining cooldown to be able to use the ability
     public int getCooldown() {
-        if (getOwner() == null) {
-            throw new Error("Attempt to use the .getCooldown() method on an AbilityTrim without an owner!");
-        }
         return cooldownLeft;
     }
 
@@ -92,15 +96,11 @@ public abstract class AbilityTrim implements Listener {
         return cooldownLeft == 0;
     }
 
+    public abstract void enable();
+
     // returns the owner
     public @NotNull Player getOwner() {
-        assert owner != null;
         return owner;
-    }
-
-    // sets the owner
-    public void setOwner(@NotNull Player player) {
-        owner = player;
     }
 
     public void ability() {
@@ -119,7 +119,7 @@ public abstract class AbilityTrim implements Listener {
 
     public abstract void internalDisable();
 
-    public AbilityTrim(Player newOwner, int cooldown, AbilityActivationType activationType, int activationTime, String name, String abilityName) {
+    public AbilityTrim(@NotNull Player newOwner, int cooldown, @NotNull AbilityActivationType activationType, int activationTime, String name, String abilityName) {
         owner = newOwner;
         resetCooldown();
         resetActivatedTime();
@@ -131,5 +131,7 @@ public abstract class AbilityTrim implements Listener {
         ABILITY_NAME = abilityName;
 
         Bukkit.getPluginManager().registerEvents(this, TrimAbilities.getInstance());
+
+        enable();
     }
 }

@@ -1,8 +1,8 @@
 package me.stivodavco.trimAbilities.utilities;
 
-import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abilityTrims.DuneAbilityTrim;
 import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
+import me.stivodavco.trimAbilities.abilityTrims.WildAbilityTrim;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.abilityTrims.SentryAbilityTrim;
 import net.kyori.adventure.text.Component;
@@ -15,7 +15,9 @@ import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.trim.ArmorTrim;
 import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static org.bukkit.inventory.meta.trim.TrimPattern.*;
@@ -30,15 +32,17 @@ public class ArmorUtils {
         return targetPattern.orElse(null);
     }
 
-    public static AbilityTrim getAbilityTrim(TrimPattern pattern) {
-        return (pattern.equals(SENTRY) ? new SentryAbilityTrim(null)
-                : pattern.equals(DUNE) ? new DuneAbilityTrim(null)
-                : pattern.equals(SNOUT) ? new SnoutAbilityTrim(null)
-                : null
-                );
+    private static final Map<TrimPattern, Class< ? extends AbilityTrim>> PATTERN_MAP = Map.of(
+            SENTRY, SentryAbilityTrim.class,
+            DUNE, DuneAbilityTrim.class,
+            SNOUT, SnoutAbilityTrim.class,
+            WILD, WildAbilityTrim.class
+    );
+    public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
+        return PATTERN_MAP.getOrDefault(pattern, null);
     }
 
-    public static AbilityTrim getTrimIfValid(@NotNull Player player) {
+    public static @Nullable Class< ? extends AbilityTrim> getTrimClassIfValid(@NotNull Player player) {
         ItemStack helmet = player.getInventory().getHelmet();
         TrimPattern targetPattern = null;
 
@@ -52,7 +56,7 @@ public class ArmorUtils {
 
             for (ItemStack armor : player.getInventory().getArmorContents()) { // check if all armor has the same trim, if not, set equal to false
                 if (armor != null) {
-                    if (ArmorUtils.getTrim(armor).getPattern() != targetPattern) {
+                    if (getTrim(armor).getPattern() != targetPattern) {
                         equal = false;
                     }
                 } else {
@@ -61,29 +65,41 @@ public class ArmorUtils {
             }
 
             if (equal) { // if all armor patterns are equal
-                return ArmorUtils.getAbilityTrim(targetPattern);
+                return getAbilityTrimClass(targetPattern);
             }
         }
 
         return null;
     }
 
+    public static @Nullable AbilityTrim createInstance(Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
+        try {
+            return clazz.getDeclaredConstructor().newInstance(owner);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static void equipTrimIfPresent(Player plr) {
-        AbilityTrim trim = ArmorUtils.getTrimIfValid(plr);
+        Class< ? extends AbilityTrim> trimClass = getTrimClassIfValid(plr);
 
-        if (trim != null && Storage.getAbilityTrim(plr) == null) {
-            // Send message & play sound that the trim was equipped if it was not already equipped
-            plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
-                    .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
-            );
-            plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+        if (trimClass != null && Storage.getAbilityTrim(plr) == null) {
+            AbilityTrim trim = createInstance(trimClass, plr);
 
-            // register the trim
-            trim.setOwner(plr);
-            Storage.setActiveTrim(plr, trim);
+            if (trim != null) {
+                // Send message & play sound that the trim was equipped if it was not already equipped
+                plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
+                        .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
+                );
+                plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+
+                // register the trim
+                Storage.setActiveTrim(plr, trim);
+            }
+
         } else {
             AbilityTrim earlierTrim = Storage.getAbilityTrim(plr);
-            if (earlierTrim != null && (trim == null || earlierTrim.getClass() != trim.getClass())) {
+            if (earlierTrim != null && (trimClass == null || earlierTrim.getClass() != trimClass)) {
                 // Send message & play sound that the trim was unequipped if it was already equipped
                 plr.sendMessage(Component.text("Trim Unequipped ").color(NamedTextColor.DARK_RED).decorate(TextDecoration.BOLD)
                         .append(Component.text("You lost the abilities of the " + earlierTrim.getName() + " armor trim.").color(NamedTextColor.RED).decoration(TextDecoration.BOLD, false))

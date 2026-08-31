@@ -27,6 +27,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -37,6 +38,8 @@ import java.util.List;
 public class SnoutAbilityTrim extends AbilityTrim {
     private List<Entity> spawnedPiglins = new ArrayList<>();
     private BukkitTask task;
+
+    public static TrimPattern PATTERN = null;
 
     public SnoutAbilityTrim(Player newOwner) {
         super(newOwner, 120, AbilityActivationType.LIMITED_TIME, 20, "Snout", "Call for help");
@@ -53,6 +56,9 @@ public class SnoutAbilityTrim extends AbilityTrim {
         }
         spawnedPiglins.clear();
     }
+
+    @Override
+    public void enable() {}
 
     @Override
     public void customAbility() {

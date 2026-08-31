@@ -31,6 +31,9 @@ public class DuneAbilityTrim extends AbilityTrim {
     }
 
     @Override
+    public void enable() {}
+
+    @Override
     public void customAbility() {
         active = true;
 
