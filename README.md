@@ -36,10 +36,8 @@ Get blindness and slowness for 10s. If someone moves during that time in a 25 bl
 ### Eye | The trim of Teleportation
 #### Passive: _X-Ray_
 All players within 20 blocks are given glowing.
-#### Ability: _Stoneless Waystones_
-You can create up to 3 waypoints that you can teleport to from anywhere.
-> Cooldown (waypoint creation / editing): 0m, always available
-> Cooldown (to teleport): 15m
+#### Ability: _TBD_
+
 
 ### Bolt | The trim of Thunder
 #### Passive: _Thundering hits_
@@ -106,11 +104,11 @@ Apply Weakness II for 8 seconds to all entities within an 8 block radius, and ap
 > Cooldown: 2m
 
 ### Wayfinder | The trim of TBD
-#### Passive: _TBD_
-TBD
-#### Ability: _TBD_
-TBD
-> Cooldown: TBD
+#### Passive: _Stoneless Waystones_
+You can create up to 3 waypoints.
+#### Ability: _Stoneless Waystones_
+Teleport to one of your created waypoints after standing still for 5 seconds.
+> Cooldown (to teleport): 15m
 
 ### Coast | The trim of TBD
 #### Passive: _TBD_
