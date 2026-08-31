@@ -74,7 +74,7 @@ public class ArmorUtils {
 
     public static @Nullable AbilityTrim createInstance(Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
         try {
-            return clazz.getDeclaredConstructor().newInstance(owner);
+            return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
         } catch (Exception e) {
             return null;
         }
