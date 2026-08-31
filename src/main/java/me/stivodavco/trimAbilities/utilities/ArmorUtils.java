@@ -1,10 +1,11 @@
 package me.stivodavco.trimAbilities.utilities;
 
+import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abilityTrims.DuneAbilityTrim;
-import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
-import me.stivodavco.trimAbilities.abilityTrims.WildAbilityTrim;
-import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.abilityTrims.SentryAbilityTrim;
+import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
+import me.stivodavco.trimAbilities.abilityTrims.WardAbilityTrim;
+import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,8 +18,10 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
 
 import static org.bukkit.inventory.meta.trim.TrimPattern.*;
 
@@ -36,9 +39,10 @@ public class ArmorUtils {
             SENTRY, SentryAbilityTrim.class,
             DUNE, DuneAbilityTrim.class,
             SNOUT, SnoutAbilityTrim.class,
-            WILD, WildAbilityTrim.class
+            WARD, WardAbilityTrim.class
     );
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
+        TrimAbilities.getInstance().getLogger().info(String.valueOf(PATTERN_MAP.getOrDefault(pattern, null)));
         return PATTERN_MAP.getOrDefault(pattern, null);
     }
 
@@ -72,21 +76,43 @@ public class ArmorUtils {
         return null;
     }
 
-    public static @Nullable AbilityTrim createInstance(Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
+    public static @Nullable AbilityTrim createInstance(@NotNull Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
         try {
             return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
-        } catch (Exception e) {
+        } catch (InvocationTargetException e) {
+            TrimAbilities.getInstance().getLogger().log(
+                    Level.SEVERE,
+                    "Constructor of " + clazz.getSimpleName() + " threw an exception",
+                    e.getCause() // <-- the real exception, with its own full stack trace
+            );
+            return null;
+        } catch (ReflectiveOperationException e) {
+            TrimAbilities.getInstance().getLogger().log(
+                    Level.SEVERE,
+                    "Failed to construct " + clazz.getSimpleName(),
+                    e
+            );
             return null;
         }
+//        try {
+//            return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
+//        } catch (Exception e) {
+//            return null;
+//        }
     }
 
-    public static void equipTrimIfPresent(Player plr) {
+    //TrimAbilities.getInstance().getLogger().severe("Error while creation!");
+    //            TrimAbilities.getInstance().getLogger().warning(e.getCause().toString());
+    //            TrimAbilities.getInstance().getLogger().warning(Arrays.toString(e.getStackTrace()));
+
+    public static void equipTrimIfPresent(@NotNull Player plr) {
         Class< ? extends AbilityTrim> trimClass = getTrimClassIfValid(plr);
 
         if (trimClass != null && Storage.getAbilityTrim(plr) == null) {
             AbilityTrim trim = createInstance(trimClass, plr);
 
             if (trim != null) {
+                TrimAbilities.getInstance().getLogger().info("equip!!!");
                 // Send message & play sound that the trim was equipped if it was not already equipped
                 plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
                         .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
@@ -110,13 +136,6 @@ public class ArmorUtils {
                 Storage.setActiveTrim(plr, null);
                 plr.sendActionBar(Component.empty());
             }
-        }
-    }
-
-    public static void equipTrimOverride(Player plr) {
-        if (Storage.getAbilityTrim(plr) != null) {
-            Storage.setActiveTrim(plr, null);
-            equipTrimIfPresent(plr);
         }
     }
 }

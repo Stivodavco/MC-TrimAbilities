@@ -1,6 +1,7 @@
 me/stivodavco/trimAbilities/listeners/AbilityListener.class
 me/stivodavco/trimAbilities/TrimAbilities$1.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim.class
@@ -10,7 +11,6 @@ me/stivodavco/trimAbilities/utilities/RandomnessUtils.class
 me/stivodavco/trimAbilities/utilities/ParticleUtils.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim$1.class
 me/stivodavco/trimAbilities/commands/DebugCommands.class
-me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim.class
 me/stivodavco/trimAbilities/abstractClasses/TrimSet.class
 me/stivodavco/trimAbilities/TrimAbilities.class
 me/stivodavco/trimAbilities/utilities/Storage.class

@@ -1,14 +1,12 @@
 package me.stivodavco.trimAbilities.commands;
 
 import com.mojang.brigadier.Command;
-import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
 import io.papermc.paper.registry.RegistryKey;
-import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.utilities.ArmorUtils;
 import me.stivodavco.trimAbilities.utilities.Storage;
@@ -20,8 +18,6 @@ import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.trim.ArmorTrim;
 import org.bukkit.inventory.meta.trim.TrimMaterial;
 import org.bukkit.inventory.meta.trim.TrimPattern;
-
-import java.util.List;
 
 public class DebugCommands {
     public static LiteralArgumentBuilder<CommandSourceStack> createSetTrimCommand() {
@@ -38,7 +34,7 @@ public class DebugCommands {
                                 item.setItemMeta(meta);
                             }
                         }
-                        ArmorUtils.equipTrimOverride(executor);
+                        ArmorUtils.equipTrimIfPresent(executor);
                         AbilityTrim abilityTrim = Storage.getAbilityTrim(executor);
                         if (abilityTrim != null) {
                             abilityTrim.cooldownLeft = 0;
@@ -56,6 +52,7 @@ public class DebugCommands {
 
                     AbilityTrim abilityTrim = Storage.getAbilityTrim(player);
                     if (abilityTrim != null) {
+                        abilityTrim.disable();
                         abilityTrim.cooldownLeft = 0;
                         player.sendMessage(Component.text(String.format("Successfully cleared the cooldown for player %s's equipped armor trim. ", player.getName())).color(NamedTextColor.GREEN));
                     } else {
