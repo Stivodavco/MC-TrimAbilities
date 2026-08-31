@@ -1,5 +1,6 @@
 package me.stivodavco.trimAbilities.utilities;
 
+import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abilityTrims.DuneAbilityTrim;
 import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
@@ -40,11 +41,10 @@ public class ArmorUtils {
     public static AbilityTrim getTrimIfValid(@NotNull Player player) {
         ItemStack helmet = player.getInventory().getHelmet();
         TrimPattern targetPattern = null;
-        if (helmet != null) {
-            ArmorTrim trim = ArmorUtils.getTrim(helmet);
-            if (trim != null) {
-                targetPattern = trim.getPattern();
-            }
+
+        ArmorTrim trim = ArmorUtils.getTrim(helmet);
+        if (trim != null) {
+            targetPattern = trim.getPattern();
         }
 
         if (targetPattern != null) {
@@ -83,7 +83,7 @@ public class ArmorUtils {
             Storage.setActiveTrim(plr, trim);
         } else {
             AbilityTrim earlierTrim = Storage.getAbilityTrim(plr);
-            if (earlierTrim != null) {
+            if (earlierTrim != null && (trim == null || earlierTrim.getClass() != trim.getClass())) {
                 // Send message & play sound that the trim was unequipped if it was already equipped
                 plr.sendMessage(Component.text("Trim Unequipped ").color(NamedTextColor.DARK_RED).decorate(TextDecoration.BOLD)
                         .append(Component.text("You lost the abilities of the " + earlierTrim.getName() + " armor trim.").color(NamedTextColor.RED).decoration(TextDecoration.BOLD, false))

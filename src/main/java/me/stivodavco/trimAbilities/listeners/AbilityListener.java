@@ -66,6 +66,12 @@ public class AbilityListener implements Listener {
 
     @EventHandler
     public void onArmorChange (PlayerArmorChangeEvent e) {
+//        boolean unequipCondition = e.getNewItem().getType() == Material.AIR && Storage.getAbilityTrim(e.getPlayer()) != null;
+//        boolean equipCondition = e.getOldItem().getType() != Material.AIR && Storage.getAbilityTrim(e.getPlayer()) == null;
+//
+//        if (unequipCondition || equipCondition) {
+//
+//        }
         ArmorUtils.equipTrimIfPresent(e.getPlayer());
     }
 }
