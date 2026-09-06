@@ -1,10 +1,8 @@
 package me.stivodavco.trimAbilities;
 
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-import me.stivodavco.trimAbilities.abilityTrims.SentryAbilityTrim;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.commands.DebugCommands;
-import me.stivodavco.trimAbilities.enums.AbilityActivationType;
 import me.stivodavco.trimAbilities.listeners.AbilityListener;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
@@ -12,7 +10,6 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -58,7 +55,7 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
                     Component cooldownText;
 
                     if (trim.isActive()) {
-                        if (trim.getActivationType().equals(AbilityActivationType.LIMITED_TIME)) {
+                        if (trim.getActivationType().equals(AbilityTrim.AbilityType.LIMITED_TIME)) {
                             int total = trim.getActiveTimeLeft();
                             int minutes = Math.floorDiv(total, 60);
                             int seconds = total - minutes * 60;

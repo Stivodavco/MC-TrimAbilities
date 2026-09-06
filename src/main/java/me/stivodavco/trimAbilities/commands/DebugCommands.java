@@ -52,7 +52,6 @@ public class DebugCommands {
 
                     AbilityTrim abilityTrim = Storage.getAbilityTrim(player);
                     if (abilityTrim != null) {
-                        abilityTrim.disable();
                         abilityTrim.cooldownLeft = 0;
                         player.sendMessage(Component.text(String.format("Successfully cleared the cooldown for player %s's equipped armor trim. ", player.getName())).color(NamedTextColor.GREEN));
                     } else {

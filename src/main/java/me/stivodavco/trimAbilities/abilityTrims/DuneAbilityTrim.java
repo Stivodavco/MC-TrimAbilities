@@ -2,7 +2,6 @@ package me.stivodavco.trimAbilities.abilityTrims;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
-import me.stivodavco.trimAbilities.enums.AbilityActivationType;
 import me.stivodavco.trimAbilities.utilities.ParticleUtils;
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -27,7 +26,7 @@ public class DuneAbilityTrim extends AbilityTrim {
     public final int SPEED_AMPLIF = 2;
 
     public DuneAbilityTrim(Player newOwner) {
-        super(newOwner, 85, AbilityActivationType.LIMITED_TIME, 5, "Dune", "Sandstorm");
+        super(newOwner, 85, AbilityType.LIMITED_TIME, 5, "Dune", "Sandstorm");
     }
 
     @Override
@@ -35,8 +34,6 @@ public class DuneAbilityTrim extends AbilityTrim {
 
     @Override
     public void customAbility() {
-        active = true;
-
         List<Entity> nearby =  getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS);
 
         for (Entity entity : nearby) {
@@ -61,7 +58,5 @@ public class DuneAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void internalDisable() {
-
-    }
+    public void internalDisable() {}
 }

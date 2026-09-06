@@ -1,21 +1,19 @@
 package me.stivodavco.trimAbilities.abilityTrims;
 
-import io.papermc.paper.event.player.PlayerPickItemEvent;
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
-import me.stivodavco.trimAbilities.enums.AbilityActivationType;
-import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.*;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.PiglinBarterEvent;
@@ -24,7 +22,6 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.trim.TrimPattern;
@@ -42,7 +39,7 @@ public class SnoutAbilityTrim extends AbilityTrim {
     public static TrimPattern PATTERN = null;
 
     public SnoutAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityActivationType.LIMITED_TIME, 20, "Snout", "Call for help");
+        super(newOwner, 120, AbilityType.LIMITED_TIME, 20, "Snout", "Call for help");
     }
 
     public void despawnPiglins() {
@@ -62,7 +59,6 @@ public class SnoutAbilityTrim extends AbilityTrim {
 
     @Override
     public void customAbility() {
-        active = true;
         Location ownerLoc = getOwner().getLocation();
 
         PiglinBrute brute = getOwner().getWorld().spawn(ownerLoc, PiglinBrute.class);

@@ -1,19 +1,25 @@
 package me.stivodavco.trimAbilities.abstractClasses;
 
 import me.stivodavco.trimAbilities.TrimAbilities;
-import me.stivodavco.trimAbilities.enums.AbilityActivationType;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class AbilityTrim implements Listener {
+    public enum AbilityType {
+        LIMITED_TIME,
+        UNTIL_USED,
+        LIMITED_UNTIL_USED,
+        LIMITED_ACTIVATED_AFTER_USED,
+        INSTANT
+    }
+
     // General info (same for every instance of an AbilityTrim)
     public static int COOLDOWN = 0;
-    public static AbilityActivationType ACTIVATION_TYPE = null;
+    public static AbilityType ABILITY_TYPE = null;
     public static int ACTIVATION_TIME = 0;
     public static String NAME = "Null";
     public static String ABILITY_NAME = "Null";
@@ -36,8 +42,8 @@ public abstract class AbilityTrim implements Listener {
     }
 
     // returns the AbilityActivationType of the ability - eg. AbilityActivationType.LIMITED_TIME
-    public AbilityActivationType getActivationType() {
-        return ACTIVATION_TYPE;
+    public AbilityType getActivationType() {
+        return ABILITY_TYPE;
     }
 
     // returns the ActivationTime in seconds
@@ -72,7 +78,7 @@ public abstract class AbilityTrim implements Listener {
 
     // subtracts 1 from the active time (seconds, if possible)
     public void subtractActiveTime() {
-        if (activeTimeLeft > 0 && ACTIVATION_TYPE.equals(AbilityActivationType.LIMITED_TIME)) {
+        if (activeTimeLeft > 0 && ABILITY_TYPE.equals(AbilityType.LIMITED_TIME)) {
             activeTimeLeft--;
             if (activeTimeLeft <= 0) {
                 active = false;
@@ -107,6 +113,10 @@ public abstract class AbilityTrim implements Listener {
         resetActivatedTime();
         resetCooldown();
 
+        if (ABILITY_TYPE == AbilityType.LIMITED_TIME) {
+            active = true;
+        }
+
         customAbility();
     } // runs the ability
 
@@ -119,13 +129,13 @@ public abstract class AbilityTrim implements Listener {
 
     public abstract void internalDisable();
 
-    public AbilityTrim(@NotNull Player newOwner, int cooldown, @NotNull AbilityActivationType activationType, int activationTime, String name, String abilityName) {
+    public AbilityTrim(@NotNull Player newOwner, int cooldown, @NotNull AbilityType activationType, int activationTime, String name, String abilityName) {
         owner = newOwner;
         resetCooldown();
         resetActivatedTime();
 
         COOLDOWN = cooldown;
-        ACTIVATION_TYPE = activationType;
+        ABILITY_TYPE = activationType;
         ACTIVATION_TIME = activationTime;
         NAME = name;
         ABILITY_NAME = abilityName;

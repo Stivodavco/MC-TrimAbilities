@@ -42,7 +42,6 @@ public class ArmorUtils {
             WARD, WardAbilityTrim.class
     );
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
-        TrimAbilities.getInstance().getLogger().info(String.valueOf(PATTERN_MAP.getOrDefault(pattern, null)));
         return PATTERN_MAP.getOrDefault(pattern, null);
     }
 
