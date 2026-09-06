@@ -9,8 +9,6 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.Nullable;
@@ -99,20 +97,6 @@ public class WardAbilityTrim extends AbilityTrim {
         if (runnable != null) {
             runnable.cancel();
             runnable = null;
-        }
-    }
-
-    /* EVENTS */
-    @EventHandler()
-    public void onPlayerMove(PlayerMoveEvent e) {
-
-
-        boolean xDiff = Math.abs(e.getFrom().getX() - e.getTo().getX()) > 0.3;
-        boolean yDiff = Math.abs(e.getFrom().getY() - e.getTo().getY()) > 0.3;
-        boolean zDiff = Math.abs(e.getFrom().getZ() - e.getTo().getZ()) > 0.3;
-
-        if (xDiff || yDiff || zDiff) {
-
         }
     }
 }
