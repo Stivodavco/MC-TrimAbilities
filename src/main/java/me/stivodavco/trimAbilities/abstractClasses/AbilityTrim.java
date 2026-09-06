@@ -1,7 +1,12 @@
 package me.stivodavco.trimAbilities.abstractClasses;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.TrimAbilities;
+import me.stivodavco.trimAbilities.utilities.ParticleUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -82,6 +87,9 @@ public abstract class AbilityTrim implements Listener {
     public void subtractCooldown() {
         if (cooldownLeft > 0 && !active) {
             cooldownLeft--;
+            if (cooldownLeft == 0) {
+                getOwner().playSound(getOwner().getLocation(), Sound.BLOCK_VAULT_OPEN_SHUTTER, SoundCategory.UI, 0.2f, 2);
+            }
         }
     }
 
@@ -90,11 +98,13 @@ public abstract class AbilityTrim implements Listener {
         if (active && activeTimeLeft > 0) {
             activeTimeLeft--;
             if (activeTimeLeft <= 0) {
+                getOwner().playSound(getOwner().getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.UI, 0.2f, 2);
                 active = false;
             }
         } else if (using && usingTimeLeft > 0) {
             usingTimeLeft--;
             if (usingTimeLeft <= 0) {
+                getOwner().playSound(getOwner().getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.UI, 0.2f, 2);
                 using = false;
             }
         }
@@ -137,9 +147,15 @@ public abstract class AbilityTrim implements Listener {
         switch (getType()) {
             case LIMITED_TIME:
                 active = true;
+                break;
             case LIMITED_UNTIL_USED, LIMITED_ACTIVATED_AFTER_USED:
                 using = true;
+                break;
         }
+
+        getOwner().getWorld().playSound(getOwner().getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 2);
+        ParticleBuilder particle = new ParticleBuilder(Particle.GLOW);
+        ParticleUtils.cylinder(getOwner().getLocation(), 0.5, 2, particle);
 
         customAbility();
     } // runs the ability
@@ -155,6 +171,7 @@ public abstract class AbilityTrim implements Listener {
 
     public void used() {
         if (using || getType() == AbilityType.UNTIL_USED) {
+            getOwner().playSound(getOwner().getLocation(), Sound.BLOCK_RESPAWN_ANCHOR_CHARGE, SoundCategory.UI, 0.2f, 2);
             using = false;
             if (getType() == AbilityType.LIMITED_ACTIVATED_AFTER_USED) {
                 resetActivatedTime();

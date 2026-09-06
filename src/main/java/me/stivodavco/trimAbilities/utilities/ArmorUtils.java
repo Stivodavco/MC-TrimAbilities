@@ -18,7 +18,6 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -78,31 +77,11 @@ public class ArmorUtils {
     public static @Nullable AbilityTrim createInstance(@NotNull Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
         try {
             return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
-        } catch (InvocationTargetException e) {
-            TrimAbilities.getInstance().getLogger().log(
-                    Level.SEVERE,
-                    "Constructor of " + clazz.getSimpleName() + " threw an exception",
-                    e.getCause() // <-- the real exception, with its own full stack trace
-            );
-            return null;
-        } catch (ReflectiveOperationException e) {
-            TrimAbilities.getInstance().getLogger().log(
-                    Level.SEVERE,
-                    "Failed to construct " + clazz.getSimpleName(),
-                    e
-            );
+        } catch (Exception e) {
+            TrimAbilities.getInstance().getLogger().log(Level.SEVERE, "Failed to create an instance of class " + clazz.getSimpleName(), e.getCause());
             return null;
         }
-//        try {
-//            return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
-//        } catch (Exception e) {
-//            return null;
-//        }
-    }
-
-    //TrimAbilities.getInstance().getLogger().severe("Error while creation!");
-    //            TrimAbilities.getInstance().getLogger().warning(e.getCause().toString());
-    //            TrimAbilities.getInstance().getLogger().warning(Arrays.toString(e.getStackTrace()));
+    };
 
     public static void equipTrimIfPresent(@NotNull Player plr) {
         Class< ? extends AbilityTrim> trimClass = getTrimClassIfValid(plr);
@@ -111,7 +90,6 @@ public class ArmorUtils {
             AbilityTrim trim = createInstance(trimClass, plr);
 
             if (trim != null) {
-                TrimAbilities.getInstance().getLogger().info("equip!!!");
                 // Send message & play sound that the trim was equipped if it was not already equipped
                 plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
                         .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))

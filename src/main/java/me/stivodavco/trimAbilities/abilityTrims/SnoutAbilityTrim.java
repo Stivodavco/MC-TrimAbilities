@@ -44,7 +44,7 @@ public class SnoutAbilityTrim extends AbilityTrim {
 
     public void despawnPiglins() {
         for (Entity piglin : spawnedPiglins) {
-            Particle.CLOUD.builder().
+            Particle.POOF.builder().
                     location(piglin.getLocation()).
                     receivers(20).
                     count(1).
