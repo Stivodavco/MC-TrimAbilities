@@ -27,7 +27,7 @@ public class WardAbilityTrim extends AbilityTrim {
     private Map<Player, Location> playerLocations = new HashMap<>();
 
     public WardAbilityTrim(Player newOwner) {
-        super(newOwner, 180, AbilityType.LIMITED_UNTIL_USED, 10, "Wild", "Sensitive Shriek");
+        super(newOwner, 180, AbilityType.LIMITED_ACTIVATED_AFTER_USED, EFFECT_DURATION, 10, "Wild", "Sensitive Shriek");
     }
 
     @Override
@@ -60,7 +60,7 @@ public class WardAbilityTrim extends AbilityTrim {
         runnable = new BukkitRunnable() {
             @Override
             public void run() {
-                if (!active) {
+                if (!using) {
                     runnable = null;
                     cancel();
                 }
@@ -76,10 +76,10 @@ public class WardAbilityTrim extends AbilityTrim {
                     if (xDiff || yDiff || zDiff) {
                         player.sendMessage("YOU MOVED!!!");
 
+                        used();
+
                         runnable = null;
                         cancel();
-
-                        activeTimeLeft = EFFECT_DURATION;
                     }
                 }
             }
@@ -98,5 +98,10 @@ public class WardAbilityTrim extends AbilityTrim {
             runnable.cancel();
             runnable = null;
         }
+    }
+
+    @Override
+    public void internalUsed() {
+
     }
 }

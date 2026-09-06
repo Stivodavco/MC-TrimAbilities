@@ -47,39 +47,45 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
 
                     if (ticksPassed >= 20) {
                         trim.subtractCooldown();
-                        trim.subtractActiveTime();
+                        trim.subtractTime();
                         ticksPassed = 0;
                     }
 
                     // ACTIONBAR
-                    Component cooldownText;
+                    Component actionbarText;
 
                     if (trim.isActive()) {
-                        if (trim.getActivationType().equals(AbilityTrim.AbilityType.LIMITED_TIME)) {
-                            int total = trim.getActiveTimeLeft();
+                        int total = trim.getActiveTimeLeft();
+                        int minutes = Math.floorDiv(total, 60);
+                        int seconds = total - minutes * 60;
+
+                        actionbarText = Component.text("[ACTIVE FOR " + minutes + "m " + seconds + "s]").color(NamedTextColor.DARK_AQUA);
+                    } else if (trim.isUsing()){
+                        if (trim.getType() == AbilityTrim.AbilityType.UNTIL_USED) {
+                            actionbarText = Component.text("[WAITING UNTIL USED]").color(NamedTextColor.AQUA);
+                        } else {
+                            int total = trim.getUsingTimeLeft();
                             int minutes = Math.floorDiv(total, 60);
                             int seconds = total - minutes * 60;
 
-                            cooldownText = Component.text("[ACTIVE FOR " + minutes + "m " + seconds + "s]").color(NamedTextColor.DARK_AQUA);
-                        } else {
-                            cooldownText = Component.text("[ACTIVE]").color(NamedTextColor.DARK_AQUA);
+                            actionbarText = Component.text("[WAITING UNTIL USED " + minutes + "m " + seconds + "s]").color(NamedTextColor.AQUA);
                         }
                     } else {
                         if (trim.isAbilityReady()) {
-                            cooldownText = Component.text("[READY!]").color(NamedTextColor.GREEN);
+                            actionbarText = Component.text("[READY!]").color(NamedTextColor.GREEN);
                         } else {
                             int total = trim.getCooldown();
                             int minutes = Math.floorDiv(total, 60);
                             int seconds = total - minutes * 60;
 
-                            cooldownText = Component.text("[On Cooldown] " + minutes + "m " + seconds + "s").color(NamedTextColor.RED);
+                            actionbarText = Component.text("[On Cooldown] " + minutes + "m " + seconds + "s").color(NamedTextColor.RED);
                         }
                     }
 
                     player.sendActionBar(Component.text(trim.getName()).color(NamedTextColor.YELLOW).decorate(TextDecoration.BOLD)
                             .append(Component.text(" | ").color(NamedTextColor.WHITE).decoration(TextDecoration.BOLD, false))
                             .append(Component.text(trim.getAbilityName() + ": ").color(NamedTextColor.LIGHT_PURPLE).decoration(TextDecoration.BOLD, false))
-                            .append(cooldownText.decoration(TextDecoration.BOLD, false))
+                            .append(actionbarText.decoration(TextDecoration.BOLD, false))
                     );
                 }
             }

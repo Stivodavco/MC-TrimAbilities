@@ -5,8 +5,8 @@ me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim.class
+me/stivodavco/trimAbilities/abstractClasses/AbilityTrim$AbilityType.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim$1.class
-me/stivodavco/trimAbilities/enums/AbilityActivationType.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim$1.class
 me/stivodavco/trimAbilities/utilities/RandomnessUtils.class
 me/stivodavco/trimAbilities/utilities/ParticleUtils.class

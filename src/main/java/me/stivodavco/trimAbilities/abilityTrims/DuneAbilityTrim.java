@@ -26,7 +26,7 @@ public class DuneAbilityTrim extends AbilityTrim {
     public final int SPEED_AMPLIF = 2;
 
     public DuneAbilityTrim(Player newOwner) {
-        super(newOwner, 85, AbilityType.LIMITED_TIME, 5, "Dune", "Sandstorm");
+        super(newOwner, 85, AbilityType.LIMITED_TIME, 5, 0, "Dune", "Sandstorm");
     }
 
     @Override
@@ -59,4 +59,7 @@ public class DuneAbilityTrim extends AbilityTrim {
 
     @Override
     public void internalDisable() {}
+
+    @Override
+    public void internalUsed() {}
 }

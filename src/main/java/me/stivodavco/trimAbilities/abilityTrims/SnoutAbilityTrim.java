@@ -39,7 +39,7 @@ public class SnoutAbilityTrim extends AbilityTrim {
     public static TrimPattern PATTERN = null;
 
     public SnoutAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, 20, "Snout", "Call for help");
+        super(newOwner, 120, AbilityType.LIMITED_TIME, 20, 0, "Snout", "Call for help");
     }
 
     public void despawnPiglins() {
@@ -92,6 +92,9 @@ public class SnoutAbilityTrim extends AbilityTrim {
             }
         }
     }
+
+    @Override
+    public void internalUsed() {}
 
     /* EVENTS */
     public final NamespacedKey key = NamespacedKey.fromString("barter_stack_size", TrimAbilities.getInstance());

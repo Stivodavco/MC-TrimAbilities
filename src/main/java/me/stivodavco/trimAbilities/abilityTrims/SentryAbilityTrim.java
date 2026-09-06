@@ -21,7 +21,7 @@ public class SentryAbilityTrim extends AbilityTrim {
     private BukkitTask runnable = null;
 
     public SentryAbilityTrim(Player newOwner) {
-        super(newOwner, 60, AbilityType.LIMITED_TIME, 30, "Sentry", "Turret");
+        super(newOwner, 60, AbilityType.LIMITED_TIME, 30, 0, "Sentry", "Turret");
     }
 
     @Override
@@ -60,6 +60,9 @@ public class SentryAbilityTrim extends AbilityTrim {
             runnable.cancel();
         }
     }
+
+    @Override
+    public void internalUsed() {}
 
     /* EVENTS */
     @EventHandler
