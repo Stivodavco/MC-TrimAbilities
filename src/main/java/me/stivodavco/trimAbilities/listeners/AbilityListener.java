@@ -13,7 +13,7 @@ public class AbilityListener implements Listener {
     // GENERAL (FOR EVERY TRIM)
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if (e.getAction().equals(Action.RIGHT_CLICK_AIR) && e.getPlayer().isSneaking()) { //  || e.getAction().equals(Action.RIGHT_CLICK_BLOCK) )
+        if ((e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && e.getPlayer().isSneaking()) {
             AbilityTrim trim = Storage.getAbilityTrim(e.getPlayer());
             if (trim != null && trim.isAbilityReady()) {
                 trim.ability();

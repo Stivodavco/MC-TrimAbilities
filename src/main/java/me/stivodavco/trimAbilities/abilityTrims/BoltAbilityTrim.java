@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class BoltAbilityTrim extends AbilityTrim {
     public final double RADIUS = 10;
+    public static final int LIGHTNING_CHANCE = 10;
 
     public BoltAbilityTrim(Player newOwner) {
         super(newOwner, 120, AbilityType.INSTANT, 0, 0, "Bolt", "Lightning Strike");
@@ -49,7 +50,7 @@ public class BoltAbilityTrim extends AbilityTrim {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
-        if (e.getDamager() == getOwner() && RandomnessUtils.chance(10)) {
+        if (e.getDamager() == getOwner() && RandomnessUtils.chance(LIGHTNING_CHANCE)) {
             e.getEntity().getWorld().spawn(e.getEntity().getLocation(), LightningStrike.class);
         }
     }
