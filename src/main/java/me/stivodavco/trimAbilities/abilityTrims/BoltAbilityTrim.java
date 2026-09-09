@@ -48,6 +48,7 @@ public class BoltAbilityTrim extends AbilityTrim {
     @Override
     public void internalUsed() {}
 
+    /* EVENTS */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if (e.getDamager() == getOwner() && RandomnessUtils.chance(LIGHTNING_CHANCE)) {

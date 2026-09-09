@@ -14,6 +14,7 @@ me/stivodavco/trimAbilities/utilities/RandomnessUtils.class
 me/stivodavco/trimAbilities/utilities/ParticleUtils.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim$1.class
 me/stivodavco/trimAbilities/commands/DebugCommands.class
+me/stivodavco/trimAbilities/abilityTrims/VexAbilityTrim.class
 me/stivodavco/trimAbilities/TrimAbilities.class
 me/stivodavco/trimAbilities/utilities/Storage.class
 me/stivodavco/trimAbilities/abilityTrims/DuneAbilityTrim.class
