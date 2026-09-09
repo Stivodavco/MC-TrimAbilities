@@ -14,23 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DuneAbilityTrim extends AbilityTrim {
-    public final double RADIUS = 10;
+    public static final double RADIUS = 10;
+
+    public static final PotionEffect SATURATION = new PotionEffect(PotionEffectType.SATURATION, -1, 255, false, false);
 
     // potion effects (in ticks)
-    public final int BLINDNESS_DURATION = 100;
+    public static final int BLINDNESS_DURATION = 100;
 
-    public final int SLOWNESS_DURATION = 100;
-    public final int SLOWNESS_AMPLIF = 2;
+    public static final int SLOWNESS_DURATION = 100;
+    public static final int SLOWNESS_AMPLIF = 2;
 
-    public final int SPEED_DURATION = 100;
-    public final int SPEED_AMPLIF = 2;
+    public static final int SPEED_DURATION = 100;
+    public static final int SPEED_AMPLIF = 2;
 
     public DuneAbilityTrim(Player newOwner) {
         super(newOwner, 85, AbilityType.LIMITED_TIME, 5, 0, "Dune", "Sandstorm");
     }
 
     @Override
-    public void enable() {}
+    public void enable() {
+        getOwner().addPotionEffect(SATURATION);
+    }
 
     @Override
     public void customAbility() {
@@ -58,7 +62,9 @@ public class DuneAbilityTrim extends AbilityTrim {
     }
 
     @Override
-    public void internalDisable() {}
+    public void internalDisable() {
+        getOwner().removePotionEffect(PotionEffectType.SATURATION);
+    }
 
     @Override
     public void internalUsed() {}
