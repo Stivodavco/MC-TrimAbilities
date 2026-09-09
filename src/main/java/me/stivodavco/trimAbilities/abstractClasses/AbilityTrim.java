@@ -154,7 +154,7 @@ public abstract class AbilityTrim implements Listener {
         }
 
         getOwner().getWorld().playSound(getOwner().getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 2);
-        ParticleBuilder particle = new ParticleBuilder(Particle.GLOW);
+        ParticleBuilder particle = new ParticleBuilder(Particle.GLOW).extra(0);
         ParticleUtils.cylinder(getOwner().getLocation(), 0.5, 2, particle);
 
         customAbility();

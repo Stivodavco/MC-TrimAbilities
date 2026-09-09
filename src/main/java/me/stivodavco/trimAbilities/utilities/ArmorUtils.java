@@ -1,10 +1,7 @@
 package me.stivodavco.trimAbilities.utilities;
 
 import me.stivodavco.trimAbilities.TrimAbilities;
-import me.stivodavco.trimAbilities.abilityTrims.DuneAbilityTrim;
-import me.stivodavco.trimAbilities.abilityTrims.SentryAbilityTrim;
-import me.stivodavco.trimAbilities.abilityTrims.SnoutAbilityTrim;
-import me.stivodavco.trimAbilities.abilityTrims.WardAbilityTrim;
+import me.stivodavco.trimAbilities.abilityTrims.*;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -38,7 +35,8 @@ public class ArmorUtils {
             SENTRY, SentryAbilityTrim.class,
             DUNE, DuneAbilityTrim.class,
             SNOUT, SnoutAbilityTrim.class,
-            WARD, WardAbilityTrim.class
+            WARD, WardAbilityTrim.class,
+            BOLT, BoltAbilityTrim.class
     );
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
         return PATTERN_MAP.getOrDefault(pattern, null);
