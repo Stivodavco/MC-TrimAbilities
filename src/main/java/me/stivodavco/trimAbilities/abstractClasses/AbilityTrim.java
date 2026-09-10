@@ -19,7 +19,8 @@ public abstract class AbilityTrim implements Listener {
         UNTIL_USED,
         LIMITED_UNTIL_USED,
         LIMITED_ACTIVATED_AFTER_USED,
-        INSTANT
+        INSTANT,
+        NONE
     }
 
     // General info (same for every instance of an AbilityTrim)

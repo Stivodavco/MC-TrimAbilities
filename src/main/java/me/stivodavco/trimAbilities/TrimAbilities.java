@@ -70,6 +70,8 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
 
                             actionbarText = Component.text("[WAITING UNTIL USED " + minutes + "m " + seconds + "s]").color(NamedTextColor.AQUA);
                         }
+                    } else if (trim.getType() == AbilityTrim.AbilityType.NONE) {
+                        actionbarText = Component.text("(Passive)").color(NamedTextColor.GRAY);
                     } else {
                         if (trim.isAbilityReady()) {
                             actionbarText = Component.text("[READY!]").color(NamedTextColor.GREEN);
@@ -82,11 +84,18 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
                         }
                     }
 
-                    player.sendActionBar(Component.text(trim.getName()).color(NamedTextColor.YELLOW).decorate(TextDecoration.BOLD)
-                            .append(Component.text(" | ").color(NamedTextColor.WHITE).decoration(TextDecoration.BOLD, false))
-                            .append(Component.text(trim.getAbilityName() + ": ").color(NamedTextColor.LIGHT_PURPLE).decoration(TextDecoration.BOLD, false))
-                            .append(actionbarText.decoration(TextDecoration.BOLD, false))
-                    );
+                    Component text = Component.text(trim.getName()).color(NamedTextColor.YELLOW).decorate(TextDecoration.BOLD)
+                        .append(Component.text(" | ").color(NamedTextColor.WHITE).decoration(TextDecoration.BOLD, false));
+
+                    if (trim.getType() == AbilityTrim.AbilityType.NONE) {
+                        text = text.append(Component.text(trim.getAbilityName()).color(NamedTextColor.GRAY).decoration(TextDecoration.BOLD, false).decorate(TextDecoration.ITALIC));
+
+                    } else {
+                        text = text.append(Component.text(trim.getAbilityName() + ": ").color(NamedTextColor.LIGHT_PURPLE).decoration(TextDecoration.BOLD, false))
+                            .append(actionbarText.decoration(TextDecoration.BOLD, false));
+                    }
+
+                    player.sendActionBar(text);
                 }
             }
         }.runTaskTimer(this, 0, 5);
