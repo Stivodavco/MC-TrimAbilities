@@ -62,8 +62,6 @@ public class WardAbilityTrim extends AbilityTrim {
     public void customAbility() {
         List<Entity> nearbyEntities = getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS);
 
-        nearbyEntities.add(getOwner());
-
         Component title = Component.text("DON'T MOVE!").decorate(TextDecoration.BOLD).color(NamedTextColor.RED);
         Component subtitle = Component.text("A warden senses you...").color(NamedTextColor.DARK_RED);
 
