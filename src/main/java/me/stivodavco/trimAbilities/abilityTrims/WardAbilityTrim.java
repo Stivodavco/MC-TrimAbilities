@@ -14,6 +14,8 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +27,11 @@ import java.util.Map;
 public class WardAbilityTrim extends AbilityTrim {
     private static final int RADIUS = 25;
     private static final int EFFECT_DURATION = 10;
+
+    private static final PotionEffect BLINDNESS = new PotionEffect(PotionEffectType.BLINDNESS, EFFECT_DURATION * 20, 255);
+    private static final PotionEffect SLOWNESS = new PotionEffect(PotionEffectType.SLOWNESS, EFFECT_DURATION * 20, 3);
+    private static final PotionEffect SPEED = new PotionEffect(PotionEffectType.SPEED, EFFECT_DURATION * 20, 3);
+    private static final PotionEffect GLOWING = new PotionEffect(PotionEffectType.GLOWING, EFFECT_DURATION * 20, 255);
 
     private static final NamespacedKey MODIFIER_KEY = new NamespacedKey(TrimAbilities.getInstance(), "ward_trim_health_modifier");
 
@@ -60,6 +67,8 @@ public class WardAbilityTrim extends AbilityTrim {
 
     @Override
     public void customAbility() {
+        getOwner().addPotionEffects(List.of(BLINDNESS, SLOWNESS));
+
         List<Entity> nearbyEntities = getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS);
 
         Component title = Component.text("DON'T MOVE!").decorate(TextDecoration.BOLD).color(NamedTextColor.RED);
@@ -100,6 +109,12 @@ public class WardAbilityTrim extends AbilityTrim {
                         Component movedSubtitle = Component.text("!").color(NamedTextColor.RED).decorate(TextDecoration.BOLD);
                         player.showTitle(Title.title(Component.text(""), movedSubtitle, 0, 80, 10));
                         player.playSound(player.getLocation(), Sound.ENTITY_WARDEN_SONIC_BOOM, 1, 1);
+
+                        getOwner().removePotionEffect(PotionEffectType.BLINDNESS);
+                        getOwner().removePotionEffect(PotionEffectType.SLOWNESS);
+                        getOwner().addPotionEffect(SPEED);
+
+                        player.addPotionEffects(List.of(BLINDNESS, SLOWNESS, GLOWING));
 
                         used();
 
