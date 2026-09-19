@@ -56,7 +56,7 @@ public class DuneAbilityTrim extends AbilityTrim {
 
         ParticleUtils.sphere(getOwner().getLocation(), RADIUS, particle);
 
-        PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, SPEED_DURATION, SPEED_AMPLIF, false);
+        PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, SPEED_DURATION, SPEED_AMPLIF);
 
         getOwner().addPotionEffect(speed);
     }
