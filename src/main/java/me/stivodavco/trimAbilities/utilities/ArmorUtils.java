@@ -37,7 +37,8 @@ public class ArmorUtils {
             BOLT, BoltAbilityTrim.class,
             VEX, VexAbilityTrim.class,
             SILENCE, SilenceAbilityTrim.class,
-            SPIRE, SpireAbilityTrim.class
+            SPIRE, SpireAbilityTrim.class,
+            RIB, RibAbilityTrim.class
     );
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
         return PATTERN_MAP.getOrDefault(pattern, null);
