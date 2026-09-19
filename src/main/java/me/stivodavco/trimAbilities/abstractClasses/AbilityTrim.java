@@ -129,9 +129,7 @@ public abstract class AbilityTrim implements Listener {
     }
 
     // returns true if the ability is ready, otherwise false
-    public boolean isAbilityReady() {
-        return cooldownLeft == 0;
-    }
+    public boolean isAbilityReady() { return cooldownLeft == 0 && getType() != AbilityType.NONE; }
 
     public abstract void enable();
 
