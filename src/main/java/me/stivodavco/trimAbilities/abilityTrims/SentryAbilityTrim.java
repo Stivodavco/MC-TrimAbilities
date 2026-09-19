@@ -18,7 +18,7 @@ public class SentryAbilityTrim extends AbilityTrim {
     // specific info
     private static final int ARROW_DELAY_TICKS = 30;
     private static final int RANGE = 5;
-    private BukkitTask runnable = null;
+    private BukkitTask runnable;
 
     public SentryAbilityTrim(Player newOwner) {
         super(newOwner, 60, AbilityType.LIMITED_TIME, 30, 0, "Sentry", "Turret");

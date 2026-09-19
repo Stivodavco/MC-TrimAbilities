@@ -4,8 +4,6 @@ import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abilityTrims.*;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -92,9 +90,9 @@ public class ArmorUtils {
 
             if (trim != null) {
                 // Send message & play sound that the trim was equipped if it was not already equipped
-                plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
-                        .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
-                );
+//                plr.sendMessage(Component.text("Trim Equipped ").color(NamedTextColor.DARK_GREEN).decorate(TextDecoration.BOLD)
+//                        .append(Component.text("You gained the abilities of the " + trim.getName() + " armor trim.").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false))
+//                );
                 plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
 
                 // register the trim
@@ -105,9 +103,9 @@ public class ArmorUtils {
             AbilityTrim earlierTrim = Storage.getAbilityTrim(plr);
             if (earlierTrim != null && (trimClass == null || earlierTrim.getClass() != trimClass)) {
                 // Send message & play sound that the trim was unequipped if it was already equipped
-                plr.sendMessage(Component.text("Trim Unequipped ").color(NamedTextColor.DARK_RED).decorate(TextDecoration.BOLD)
-                        .append(Component.text("You lost the abilities of the " + earlierTrim.getName() + " armor trim.").color(NamedTextColor.RED).decoration(TextDecoration.BOLD, false))
-                );
+//                plr.sendMessage(Component.text("Trim Unequipped ").color(NamedTextColor.DARK_RED).decorate(TextDecoration.BOLD)
+//                        .append(Component.text("You lost the abilities of the " + earlierTrim.getName() + " armor trim.").color(NamedTextColor.RED).decoration(TextDecoration.BOLD, false))
+//                );
                 plr.playSound(plr.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 1, 1);
 
                 earlierTrim.disable();

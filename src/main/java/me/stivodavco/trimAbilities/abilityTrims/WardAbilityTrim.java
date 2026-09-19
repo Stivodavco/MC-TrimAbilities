@@ -39,7 +39,7 @@ public class WardAbilityTrim extends AbilityTrim {
     private Map<Player, Location> playerLocations = new HashMap<>();
 
     public WardAbilityTrim(Player newOwner) {
-        super(newOwner, 180, AbilityType.LIMITED_ACTIVATED_AFTER_USED, EFFECT_DURATION, 10, "Wild", "Sensitive Shriek");
+        super(newOwner, 180, AbilityType.LIMITED_ACTIVATED_AFTER_USED, EFFECT_DURATION, 10, "Ward", "Sensitive Shriek");
     }
 
     @Override

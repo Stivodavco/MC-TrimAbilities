@@ -3,26 +3,19 @@ package me.stivodavco.trimAbilities.abilityTrims;
 import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.utilities.ParticleUtils;
-import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
-import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class SpireAbilityTrim extends AbilityTrim {
-    public final double RADIUS = 15;
+    public final int RADIUS = 15;
+    public final PotionEffect LEVITATION = new PotionEffect(PotionEffectType.LEVITATION, 10 * 20, 1);
 
     public SpireAbilityTrim(Player newOwner) {
         super(newOwner, 90, AbilityType.INSTANT, 0, 0, "Spire", "Levitation Shroud");
@@ -33,7 +26,15 @@ public class SpireAbilityTrim extends AbilityTrim {
 
     @Override
     public void customAbility() {
+        for (Entity entity : getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS)) {
+            if (entity instanceof Player player) {
+                player.addPotionEffect(LEVITATION);
+            }
+        }
 
+        ParticleBuilder particle = Particle.END_ROD.builder().extra(0);
+
+        ParticleUtils.cylinder(getOwner().getLocation(), RADIUS, 3, particle);
     }
 
     @Override

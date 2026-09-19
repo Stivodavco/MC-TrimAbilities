@@ -3,6 +3,7 @@ package me.stivodavco.trimAbilities.abstractClasses;
 import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.utilities.ParticleUtils;
+import me.stivodavco.trimAbilities.utilities.TrimActionbar;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -24,13 +25,13 @@ public abstract class AbilityTrim implements Listener {
     }
 
     // General info (same for every instance of an AbilityTrim)
-    public static int COOLDOWN = 0;
-    public static AbilityType ABILITY_TYPE = null;
-    public static int ACTIVATION_TIME = 0;
-    public static int USE_TIME = 0;
-    public static String NAME = "Null";
-    public static String ABILITY_NAME = "Null";
-    public static TrimPattern PATTERN = null;
+    public int COOLDOWN = 0;
+    public AbilityType ABILITY_TYPE = null;
+    public int ACTIVATION_TIME = 0;
+    public int USE_TIME = 0;
+    public String NAME = "Null";
+    public String ABILITY_NAME = "Null";
+    public TrimPattern PATTERN = null;
 
     // Active info (different for every instance of an AbilityTrim when they are already active and used by someone)
     public int cooldownLeft = 0; // cooldown left
@@ -38,7 +39,8 @@ public abstract class AbilityTrim implements Listener {
     public int usingTimeLeft = 0;
     public boolean active = false;
     public boolean using = false;
-    private Player owner;
+    private final Player owner;
+    private final TrimActionbar actionbar;
 
     // returns the name of the trim - eg. "Sentry"
     public String getName() {
@@ -59,7 +61,7 @@ public abstract class AbilityTrim implements Listener {
     public int getActivationTime() { return ACTIVATION_TIME; }
 
     // returns the TrimPattern of this AbilityTrim
-    public static @NotNull TrimPattern getPattern() {
+    public @NotNull TrimPattern getPattern() {
         return PATTERN;
     }
 
@@ -164,6 +166,7 @@ public abstract class AbilityTrim implements Listener {
     public void disable() {
         HandlerList.unregisterAll(this);
         internalDisable();
+        actionbar.stopDisplaying();
     } // disables the ability (in case there is a BukkitRunnable running)
 
     public abstract void internalDisable();
@@ -197,6 +200,8 @@ public abstract class AbilityTrim implements Listener {
         resetUntilUsedTime();
 
         Bukkit.getPluginManager().registerEvents(this, TrimAbilities.getInstance());
+
+        actionbar = new TrimActionbar(owner, this);
 
         enable();
     }
