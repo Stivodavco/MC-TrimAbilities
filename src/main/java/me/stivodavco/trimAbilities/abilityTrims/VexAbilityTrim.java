@@ -1,7 +1,6 @@
 package me.stivodavco.trimAbilities.abilityTrims;
 
 import com.destroystokyo.paper.ParticleBuilder;
-import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.utilities.ParticleUtils;
 import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
@@ -11,20 +10,21 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.damage.DamageSource;
-import org.bukkit.entity.*;
+import org.bukkit.damage.DamageType;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EvokerFangs;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VexAbilityTrim extends AbilityTrim {
     public static final int SURVIVAL_CHANCE = 30;
     public static final int HEAL_HEALTH = 8;
     public static final int RADIUS = 10;
-    public static final int EXTRA_DMG = 16;
+    public static final int EXTRA_DMG = 14;
 
     public VexAbilityTrim(Player newOwner) {
         super(newOwner, 45, AbilityType.INSTANT, 0, 0, "Vex", "Crushing Fangs");
@@ -58,7 +58,7 @@ public class VexAbilityTrim extends AbilityTrim {
         for (Entity entity : getOwner().getNearbyEntities(RADIUS, RADIUS, RADIUS)) {
             if (entity instanceof LivingEntity) {
                 spawnFangsAtLocation(entity.getLocation());
-                ((LivingEntity) entity).damage(EXTRA_DMG);
+                ((LivingEntity) entity).damage(EXTRA_DMG, DamageSource.builder(DamageType.MAGIC).withDirectEntity(getOwner()).build());
             }
         }
 
