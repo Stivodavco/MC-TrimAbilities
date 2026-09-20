@@ -19,10 +19,12 @@ me/stivodavco/trimAbilities/abilityTrims/SpireAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim$1.class
 me/stivodavco/trimAbilities/abilityTrims/RibAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim$1.class
 me/stivodavco/trimAbilities/utilities/TrimActionbar.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim$1.class
 me/stivodavco/trimAbilities/commands/DebugCommands.class
 me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/Storage.class
