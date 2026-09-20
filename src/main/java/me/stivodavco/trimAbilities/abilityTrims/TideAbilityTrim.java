@@ -12,6 +12,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -108,6 +109,13 @@ public class TideAbilityTrim extends AbilityTrim {
     @EventHandler(ignoreCancelled = true)
     public void onPlayerMove(PlayerMoveEvent e) {
         if (active && e.getPlayer() == getOwner()) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onEntityDamage(EntityDamageEvent e) {
+        if (active && e.getEntity() == getOwner()) {
             e.setCancelled(true);
         }
     }
