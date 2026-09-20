@@ -36,6 +36,7 @@ public class SilenceAbilityTrim extends AbilityTrim {
 
             if (hide) {
                 player.hidePlayer(plugin, getOwner());
+                player.listPlayer(getOwner());
                 pitch = 2;
             } else {
                 player.showPlayer(plugin, getOwner());

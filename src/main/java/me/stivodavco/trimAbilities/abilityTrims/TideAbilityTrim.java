@@ -51,6 +51,8 @@ public class TideAbilityTrim extends AbilityTrim {
         getOwner().setGravity(false);
         getOwner().setAllowFlight(true);
         abilityRunnable = new BukkitRunnable() {
+            int ticksPassed = 0;
+
             @Override
             public void run() {
                 if (!active) {
@@ -72,13 +74,18 @@ public class TideAbilityTrim extends AbilityTrim {
 
                 getOwner().getWorld().playSound(getOwner().getLocation(), Sound.ENTITY_BREEZE_IDLE_GROUND, 1, 0);
 
-                ParticleBuilder particle = Particle.DUST.builder()
-                        .data(new Particle.DustOptions(Color.AQUA, 4))
-                        .extra(0.2);
 
-                ParticleUtils.sphere(getOwner().getLocation(), KNOCKBACK_RADIUS, particle);
+                if (ticksPassed >= 10) {
+                    ParticleBuilder particle = Particle.DUST.builder()
+                            .data(new Particle.DustOptions(Color.AQUA, 4))
+                            .extra(0.2);
+
+                    ParticleUtils.sphere(getOwner().getLocation(), KNOCKBACK_RADIUS, particle);
+                }
+
+                ticksPassed += 5;
             }
-        }.runTaskTimer(TrimAbilities.getInstance(), 0, 10);
+        }.runTaskTimer(TrimAbilities.getInstance(), 0, 5);
     }
 
     @Override
