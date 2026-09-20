@@ -42,7 +42,8 @@ public class ArmorUtils {
             entry(RIB, RibAbilityTrim.class),
             entry(WILD, WildAbilityTrim.class),
             entry(FLOW, FlowAbilityTrim.class),
-            entry(TIDE, TideAbilityTrim.class)
+            entry(TIDE, TideAbilityTrim.class),
+            entry(RAISER, RaiserAbilityTrim.class)
     );
 
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {

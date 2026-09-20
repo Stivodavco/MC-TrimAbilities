@@ -21,7 +21,7 @@ import org.bukkit.util.Vector;
 
 public class TideAbilityTrim extends AbilityTrim {
     public static final int KNOCKBACK_RADIUS = 2;
-    public static final double KNOCKBACK_POWER = 2;
+    public static final double KNOCKBACK_POWER = 1;
     public static final PotionEffect REGEN = new PotionEffect(PotionEffectType.REGENERATION, 40, 1, true, true);
 
     private BukkitTask passiveRunnable;

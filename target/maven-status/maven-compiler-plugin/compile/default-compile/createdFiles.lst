@@ -22,6 +22,7 @@ me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim$1.class
 me/stivodavco/trimAbilities/abilityTrims/RibAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/RaiserAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim$1.class
 me/stivodavco/trimAbilities/utilities/TrimActionbar.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim$1.class
