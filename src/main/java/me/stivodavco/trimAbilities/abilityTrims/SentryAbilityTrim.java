@@ -32,24 +32,24 @@ public class SentryAbilityTrim extends AbilityTrim {
         runnable = new BukkitRunnable() {
             @Override
             public void run() {
-                if (!active) {
-                    runnable = null;
-                    cancel();
+            if (!active) {
+                runnable = null;
+                cancel();
+            }
+
+            List<Entity> nearbyEntities = getOwner().getNearbyEntities(RANGE,RANGE,RANGE);
+
+            for (Entity entity : nearbyEntities) {
+                if (!entity.equals(getOwner()) && entity instanceof LivingEntity) {
+                    // launch an arrow
+                    Vector direction = entity.getLocation().toVector().subtract(getOwner().getLocation().add(0, 1, 0).toVector());
+                    AbstractArrow arrow = getOwner().launchProjectile(AbstractArrow.class, direction);
+
+                    arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
+
+                    return;
                 }
-
-                List<Entity> nearbyEntities = getOwner().getNearbyEntities(RANGE,RANGE,RANGE);
-
-                for (Entity entity : nearbyEntities) {
-                    if (!entity.equals(getOwner()) && entity instanceof LivingEntity) {
-                        // launch an arrow
-                        Vector direction = entity.getLocation().toVector().subtract(getOwner().getLocation().add(0, 1, 0).toVector());
-                        AbstractArrow arrow = getOwner().launchProjectile(AbstractArrow.class, direction);
-
-                        arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-
-                        return;
-                    }
-                }
+            }
             }
         }.runTaskTimer(TrimAbilities.getInstance(), 0, ARROW_DELAY_TICKS);
     }
