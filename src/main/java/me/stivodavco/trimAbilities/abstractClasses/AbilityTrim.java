@@ -25,13 +25,14 @@ public abstract class AbilityTrim implements Listener {
     }
 
     // General info (same for every instance of an AbilityTrim)
-    public int COOLDOWN = 0;
-    public AbilityType ABILITY_TYPE = null;
-    public int ACTIVATION_TIME = 0;
-    public int USE_TIME = 0;
-    public String NAME = "Null";
-    public String ABILITY_NAME = "Null";
-    public TrimPattern PATTERN = null;
+    public int COOLDOWN;
+    public AbilityType ABILITY_TYPE;
+    public int ACTIVATION_TIME;
+    public int USE_TIME;
+    public String NAME;
+    public String ABILITY_NAME;
+    public TrimPattern PATTERN;
+    public boolean ABILITY_PARTICLE_FX;
 
     // Active info (different for every instance of an AbilityTrim when they are already active and used by someone)
     public int cooldownLeft = 0; // cooldown left
@@ -154,9 +155,9 @@ public abstract class AbilityTrim implements Listener {
                 break;
         }
 
-        getOwner().getWorld().playSound(getOwner().getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 2);
+        getOwner().getWorld().playSound(getOwner().getLocation(), Sound.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 0.5f, 2);
         ParticleBuilder particle = new ParticleBuilder(Particle.GLOW).extra(0);
-        ParticleUtils.cylinder(getOwner().getLocation(), 0.5, 2, particle);
+        ParticleUtils.cylinder(getOwner().getLocation(), 0.5, 0.5, particle);
 
         customAbility();
     } // runs the ability

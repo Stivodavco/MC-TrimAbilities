@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 
+import static java.util.Map.entry;
 import static org.bukkit.inventory.meta.trim.TrimPattern.*;
 
 public class ArmorUtils {
@@ -29,18 +30,20 @@ public class ArmorUtils {
         return targetPattern.orElse(null);
     }
 
-    private static final Map<TrimPattern, Class< ? extends AbilityTrim>> PATTERN_MAP = Map.of(
-            SENTRY, SentryAbilityTrim.class,
-            DUNE, DuneAbilityTrim.class,
-            SNOUT, SnoutAbilityTrim.class,
-            WARD, WardAbilityTrim.class,
-            BOLT, BoltAbilityTrim.class,
-            VEX, VexAbilityTrim.class,
-            SILENCE, SilenceAbilityTrim.class,
-            SPIRE, SpireAbilityTrim.class,
-            RIB, RibAbilityTrim.class,
-            WILD, WildAbilityTrim.class
+    private static final Map<TrimPattern, Class< ? extends AbilityTrim>> PATTERN_MAP = Map.ofEntries(
+            entry(SENTRY, SentryAbilityTrim.class),
+            entry(DUNE, DuneAbilityTrim.class),
+            entry(SNOUT, SnoutAbilityTrim.class),
+            entry(WARD, WardAbilityTrim.class),
+            entry(BOLT, BoltAbilityTrim.class),
+            entry(VEX, VexAbilityTrim.class),
+            entry(SILENCE, SilenceAbilityTrim.class),
+            entry(SPIRE, SpireAbilityTrim.class),
+            entry(RIB, RibAbilityTrim.class),
+            entry(WILD, WildAbilityTrim.class),
+            entry(FLOW, FlowAbilityTrim.class)
     );
+
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
         return PATTERN_MAP.getOrDefault(pattern, null);
     }
