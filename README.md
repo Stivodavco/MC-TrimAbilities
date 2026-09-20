@@ -34,10 +34,9 @@ Get blindness and slowness for 10s. If someone moves during that time in a 25 bl
 > Cooldown: 3m
 
 ### Eye | The trim of Teleportation
-#### Passive: _X-Ray_
-All players within 20 blocks are given glowing.
-#### Ability: _TBD_
-
+#### Ability: _Ender Sight_
+Teleport above the block you are looking at within an 80 block distance.
+> Cooldown: 4m
 
 ### Bolt | The trim of Thunder
 #### Passive: _Thundering hits_
