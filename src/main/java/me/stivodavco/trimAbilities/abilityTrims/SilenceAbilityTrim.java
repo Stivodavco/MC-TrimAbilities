@@ -30,13 +30,16 @@ public class SilenceAbilityTrim extends AbilityTrim {
 
     private void setHidden(boolean hide) {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            if (player == getOwner()) {
+                continue;
+            }
+
             JavaPlugin plugin = TrimAbilities.getInstance();
 
             float pitch = 1;
 
             if (hide) {
                 player.hidePlayer(plugin, getOwner());
-                player.listPlayer(getOwner());
                 pitch = 2;
             } else {
                 player.showPlayer(plugin, getOwner());
