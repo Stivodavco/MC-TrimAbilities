@@ -2,6 +2,7 @@ package me.stivodavco.trimAbilities.utilities;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import org.bukkit.Location;
+import org.bukkit.util.Vector;
 
 public class ParticleUtils {
     public static void circle(Location center, double radius, ParticleBuilder particle) {
@@ -25,6 +26,17 @@ public class ParticleUtils {
     public static void cylinder(Location center, double radius, double height, ParticleBuilder particle) {
         for (double y = 0; y <= height; y += 0.5) {
             circle(center.clone().add(0, y, 0), radius, particle);
+        }
+    }
+
+    public static void beam(Location from, Location to, ParticleBuilder particle) {
+        double distance = from.distance(to);
+        Vector direction = to.toVector().subtract(from.toVector()).normalize();
+
+        for (double i = 0; i <= distance; i++) {
+            Location loc = from.clone().add(direction.clone().multiply(i));
+
+            particle.location(loc).spawn();
         }
     }
 }

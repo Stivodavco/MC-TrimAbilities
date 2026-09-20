@@ -2,6 +2,7 @@ package me.stivodavco.trimAbilities.abilityTrims;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
+import me.stivodavco.trimAbilities.utilities.ParticleUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -10,7 +11,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 import java.util.List;
 
@@ -25,24 +25,7 @@ public class EyeAbilityTrim extends AbilityTrim {
     @Override
     public void enable() {}
 
-    private void trail(Location from, Location to) {
-        double distance = from.distance(getOwner().getLocation());
-        Vector direction = to.toVector().subtract(from.toVector()).normalize();
 
-        ParticleBuilder particle = Particle.DUST.builder()
-                .data(new Particle.DustOptions(Color.fromRGB(255,0,255), 4))
-                .extra(0);
-
-        for (Location loc : List.of(from, to)) {
-            getOwner().getWorld().playSound(loc, Sound.ENTITY_PLAYER_TELEPORT, 1, 0);
-        }
-
-        for (double i = 0; i <= distance; i++) {
-            Location loc = from.clone().add(direction.clone().multiply(i));
-
-            particle.location(loc).spawn();
-        }
-    }
 
     @Override
     public void customAbility() {
@@ -54,7 +37,15 @@ public class EyeAbilityTrim extends AbilityTrim {
             teleportLoc.setRotation(getOwner().getLocation().getRotation());
             getOwner().teleport(teleportLoc);
 
-            trail(startLoc, getOwner().getLocation());
+            ParticleBuilder particle = Particle.DUST.builder()
+                    .data(new Particle.DustOptions(Color.fromRGB(255,0,255), 4))
+                    .extra(0);
+
+            ParticleUtils.beam(startLoc, getOwner().getLocation(), particle);
+
+            for (Location loc : List.of(startLoc, getOwner().getLocation())) {
+                getOwner().getWorld().playSound(loc, Sound.ENTITY_PLAYER_TELEPORT, 1, 0);
+            }
 
             getOwner().addPotionEffect(GLOWING);
         }
