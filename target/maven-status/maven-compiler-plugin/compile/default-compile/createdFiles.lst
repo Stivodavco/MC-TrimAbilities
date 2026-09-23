@@ -29,6 +29,7 @@ me/stivodavco/trimAbilities/utilities/TrimActionbar.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim$1.class
 me/stivodavco/trimAbilities/abilityTrims/HostAbilityTrim.class
 me/stivodavco/trimAbilities/commands/DebugCommands.class
-me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/WayfinderAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/Storage.class
