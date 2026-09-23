@@ -11,6 +11,7 @@ me/stivodavco/trimAbilities/utilities/RandomnessUtils.class
 me/stivodavco/trimAbilities/abilityTrims/FlowAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ParticleUtils.class
 me/stivodavco/trimAbilities/abilityTrims/SilenceAbilityTrim$1.class
+me/stivodavco/trimAbilities/abilityTrims/ShaperAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/SilenceAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/VexAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/TrimActionbar$1.class
