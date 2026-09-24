@@ -47,7 +47,8 @@ public class ArmorUtils {
             entry(EYE, EyeAbilityTrim.class),
             entry(HOST, HostAbilityTrim.class),
             entry(WAYFINDER, WayfinderAbilityTrim.class),
-            entry(SHAPER, ShaperAbilityTrim.class)
+            entry(SHAPER, ShaperAbilityTrim.class),
+            entry(COAST, CoastAbilityTrim.class)
     );
 
     public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
