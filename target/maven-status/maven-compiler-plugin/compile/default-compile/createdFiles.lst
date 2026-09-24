@@ -18,6 +18,7 @@ me/stivodavco/trimAbilities/utilities/TrimActionbar$1.class
 me/stivodavco/trimAbilities/TrimAbilities.class
 me/stivodavco/trimAbilities/abilityTrims/DuneAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/SpireAbilityTrim.class
+me/stivodavco/trimAbilities/abilityTrims/ShaperAbilityTrim$1.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/ArmorUtils.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim.class
