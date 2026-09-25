@@ -11,8 +11,13 @@ import java.util.function.Consumer;
 
 public class AnimationBuilder {
     private final HashMap<Integer, List<Consumer<AnimationBuilder>>> keyframes = new HashMap<>();
+    private final HashMap<Consumer<AnimationBuilder>, Integer> keyframeRepeatCount = new HashMap<>();
     private BukkitTask animationTask;
     private int runTime = 0;
+
+    private int currentRepeatCount = 0;
+
+    public int getRepeatCount() { return currentRepeatCount; }
 
     private AnimationBuilder getInstance() { return this; }
 
@@ -33,17 +38,34 @@ public class AnimationBuilder {
         for (int i = 1; i <= repeatTimes; i++) {
             at(time + i * period, action);
         }
+        keyframeRepeatCount.put(action, 0);
         return this;
     }
 
     public AnimationBuilder play() {
+        for (Consumer<AnimationBuilder> key : keyframeRepeatCount.keySet()) {
+            keyframeRepeatCount.replace(key, 0);
+        }
+
         animationTask = new BukkitRunnable() {
             @Override
             public void run() {
+                int length = keyframes.keySet().stream().mapToInt(v -> v).max().orElse(0);
+
+                if (runTime > length) {
+                    cancel();
+                    animationTask = null;
+                }
+
                 List<Consumer<AnimationBuilder>> currentKeyframes = keyframes.get(runTime);
 
                 if (currentKeyframes != null) {
                     for (Consumer<AnimationBuilder> keyframe : currentKeyframes) {
+                        if (keyframeRepeatCount.containsKey(keyframe)) {
+                            int repeatCount = keyframeRepeatCount.get(keyframe);
+                            currentRepeatCount = repeatCount;
+                            keyframeRepeatCount.replace(keyframe, repeatCount + 1);
+                        }
                         keyframe.accept(getInstance());
                     }
                 }
