@@ -1,3 +1,115 @@
+bolt:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+coast:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+dune:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+eye:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+flow:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+host:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+raiser:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+rib:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
 sentry:
   name: Sentry
   title: Archery
@@ -10,4 +122,130 @@ sentry:
     description: You fire arrows for 30 seconds at nearby players/mobs.
     cooldown: 60
     activation-time: 30
+    use-time: 0
+
+shaper:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+silence:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+snout:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+spire:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+tide:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+vex:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+ward:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+wayfinder:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
+    use-time: 0
+
+wild:
+  name: ""
+  title: ""
+  description: ""
+  passive:
+    name: ""
+    description: ""
+  ability:
+    name: ""
+    description: ""
+    cooldown: 0
+    activation-time: 0
     use-time: 0

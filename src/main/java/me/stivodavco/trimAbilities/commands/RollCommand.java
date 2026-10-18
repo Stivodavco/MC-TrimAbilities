@@ -9,6 +9,7 @@ import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSele
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import me.stivodavco.trimAbilities.utilities.AnimationBuilder;
+import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -48,11 +49,13 @@ public class RollCommand {
 
                         Consumer<AnimationBuilder> end = anim -> {
                             NamespacedKey randKey = getRandomTrim();
-                            String randTrim = StringUtils.capitalize(randKey.value());
+
+                            TrimRegistry.TrimKey trimKey = TrimRegistry.getTrimKey(RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).get(randKey));
+                            assert trimKey != null;
 
                             Title title = Title.title(
-                                    Component.text(randTrim).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),
-                                    Component.text("The trim of " ).color(NamedTextColor.GRAY) // + trimTitles.get(randTrim)
+                                    Component.text(trimKey.name()).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),
+                                    Component.text("The trim of " + trimKey.title()).color(NamedTextColor.GRAY)
                             , 10, 80, 10);
                             player.showTitle(title);
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 1);
