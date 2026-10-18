@@ -15,9 +15,13 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import org.apache.commons.lang3.StringUtils;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 import java.util.List;
 import java.util.Random;
@@ -50,7 +54,8 @@ public class RollCommand {
                         Consumer<AnimationBuilder> end = anim -> {
                             NamespacedKey randKey = getRandomTrim();
 
-                            TrimRegistry.TrimKey trimKey = TrimRegistry.getTrimKey(RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).get(randKey));
+                            TrimPattern pattern = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).get(randKey);
+                            TrimRegistry.TrimKey trimKey = TrimRegistry.getTrimKey(pattern);
                             assert trimKey != null;
 
                             Title title = Title.title(
@@ -61,12 +66,10 @@ public class RollCommand {
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 1);
                             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
 
-//                            Material template = Registry.MATERIAL.get();
-//                            TrimAbilities.getInstance().getLogger().info("Template: " + template);
-//                            if (template != null) {
-//                                TrimAbilities.getInstance().getLogger().info("Valid !");
-//                                player.give(ItemStack.of(template));
-//                            }
+                            Material template = Registry.MATERIAL.get(trimKey.itemKey());
+                            if (template != null) {
+                                player.give(ItemStack.of(template));
+                            }
                         };
 
                         AnimationBuilder animation = new AnimationBuilder();
