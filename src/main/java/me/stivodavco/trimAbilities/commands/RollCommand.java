@@ -19,34 +19,10 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import static java.util.Map.entry;
-
 public class RollCommand {
-    private static Map<String, String> trimTitles = Map.ofEntries(
-        entry("Sentry", "Archery"),
-        entry("Dune", "Sand"),
-        entry("Snout", "Nether Alliance"),
-        entry("Ward", "Senses"),
-        entry("Eye", "Teleportation"),
-        entry("Bolt", "Thunder"),
-        entry("Vex", "Illusions"),
-        entry("Silence", "Invisibility"),
-        entry("Spire", "Levitation"),
-        entry("Rib", "Unbreaking"),
-        entry("Wild", "Nature"),
-        entry("Flow", "Mobility"),
-        entry("Tide", "Water"),
-        entry("Raiser", "Impact"),
-        entry("Host", "Reaping"),
-        entry("Wayfinder", "Warping"),
-        entry("Coast", "Reaping"),
-        entry("Shaper", "Earthbending")
-    );
-
     private static NamespacedKey getRandomTrim() {
         List<NamespacedKey> keys = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).keyStream().toList();
 
@@ -76,7 +52,7 @@ public class RollCommand {
 
                             Title title = Title.title(
                                     Component.text(randTrim).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),
-                                    Component.text("The trim of " + trimTitles.get(randTrim)).color(NamedTextColor.GRAY)
+                                    Component.text("The trim of " ).color(NamedTextColor.GRAY) // + trimTitles.get(randTrim)
                             , 10, 80, 10);
                             player.showTitle(title);
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 1);

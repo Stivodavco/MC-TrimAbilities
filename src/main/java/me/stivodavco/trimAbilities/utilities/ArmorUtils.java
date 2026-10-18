@@ -1,7 +1,6 @@
 package me.stivodavco.trimAbilities.utilities;
 
 import me.stivodavco.trimAbilities.TrimAbilities;
-import me.stivodavco.trimAbilities.abilityTrims.*;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Sound;
@@ -13,12 +12,8 @@ import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
-
-import static java.util.Map.entry;
-import static org.bukkit.inventory.meta.trim.TrimPattern.*;
 
 public class ArmorUtils {
     public static ArmorTrim getTrim(ItemStack item) {
@@ -28,31 +23,6 @@ public class ArmorUtils {
                 .map(ArmorMeta::getTrim);
 
         return targetPattern.orElse(null);
-    }
-
-    private static final Map<TrimPattern, Class< ? extends AbilityTrim>> PATTERN_MAP = Map.ofEntries(
-            entry(SENTRY, SentryAbilityTrim.class),
-            entry(DUNE, DuneAbilityTrim.class),
-            entry(SNOUT, SnoutAbilityTrim.class),
-            entry(WARD, WardAbilityTrim.class),
-            entry(BOLT, BoltAbilityTrim.class),
-            entry(VEX, VexAbilityTrim.class),
-            entry(SILENCE, SilenceAbilityTrim.class),
-            entry(SPIRE, SpireAbilityTrim.class),
-            entry(RIB, RibAbilityTrim.class),
-            entry(WILD, WildAbilityTrim.class),
-            entry(FLOW, FlowAbilityTrim.class),
-            entry(TIDE, TideAbilityTrim.class),
-            entry(RAISER, RaiserAbilityTrim.class),
-            entry(EYE, EyeAbilityTrim.class),
-            entry(HOST, HostAbilityTrim.class),
-            entry(WAYFINDER, WayfinderAbilityTrim.class),
-            entry(SHAPER, ShaperAbilityTrim.class),
-            entry(COAST, CoastAbilityTrim.class)
-    );
-
-    public static @Nullable Class< ? extends AbilityTrim> getAbilityTrimClass(@NotNull TrimPattern pattern) {
-        return PATTERN_MAP.getOrDefault(pattern, null);
     }
 
     public static @Nullable Class< ? extends AbilityTrim> getTrimClassIfValid(@NotNull Player player) {
@@ -78,7 +48,11 @@ public class ArmorUtils {
             }
 
             if (equal) { // if all armor patterns are equal
-                return getAbilityTrimClass(targetPattern);
+                TrimRegistry.TrimKey key = TrimRegistry.getTrimKey(targetPattern);
+                if (key != null) {
+                    return key.clazz();
+                }
+                return null;
             }
         }
 
@@ -92,7 +66,7 @@ public class ArmorUtils {
             TrimAbilities.getInstance().getLogger().log(Level.SEVERE, "Failed to create an instance of class " + clazz.getSimpleName(), e.getCause());
             return null;
         }
-    };
+    }
 
     public static void equipTrimIfPresent(@NotNull Player plr) {
         Class< ? extends AbilityTrim> trimClass = getTrimClassIfValid(plr);

@@ -2,11 +2,14 @@ me/stivodavco/trimAbilities/abilityTrims/BoltAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/AnimationBuilder.class
 me/stivodavco/trimAbilities/listeners/AbilityListener.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim.class
+me/stivodavco/trimAbilities/utilities/TrimRegistry$PassiveInfo.class
 me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim$1.class
 me/stivodavco/trimAbilities/abilityTrims/WardAbilityTrim$2.class
 me/stivodavco/trimAbilities/abilityTrims/SentryAbilityTrim.class
 me/stivodavco/trimAbilities/abstractClasses/AbilityTrim$AbilityType.class
 me/stivodavco/trimAbilities/abilityTrims/SnoutAbilityTrim$1.class
+me/stivodavco/trimAbilities/utilities/TrimRegistry$AbilityInfo.class
+me/stivodavco/trimAbilities/utilities/TrimRegistry$TrimKey.class
 me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim$2.class
 me/stivodavco/trimAbilities/utilities/RandomnessUtils.class
 me/stivodavco/trimAbilities/abilityTrims/FlowAbilityTrim.class
@@ -38,5 +41,6 @@ me/stivodavco/trimAbilities/commands/DebugCommands.class
 me/stivodavco/trimAbilities/abilityTrims/WildAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/TideAbilityTrim.class
 me/stivodavco/trimAbilities/abilityTrims/WayfinderAbilityTrim.class
+me/stivodavco/trimAbilities/utilities/TrimRegistry.class
 me/stivodavco/trimAbilities/abilityTrims/CoastAbilityTrim.class
 me/stivodavco/trimAbilities/utilities/Storage.class

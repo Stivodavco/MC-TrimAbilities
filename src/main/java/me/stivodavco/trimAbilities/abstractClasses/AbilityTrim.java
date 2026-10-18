@@ -32,7 +32,6 @@ public abstract class AbilityTrim implements Listener {
     public String NAME;
     public String ABILITY_NAME;
     public TrimPattern PATTERN;
-    public boolean ABILITY_PARTICLE_FX;
 
     // Active info (different for every instance of an AbilityTrim when they are already active and used by someone)
     public int cooldownLeft = 0; // cooldown left

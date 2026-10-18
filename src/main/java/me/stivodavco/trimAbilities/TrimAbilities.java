@@ -24,6 +24,8 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
             commands.registrar().register(DebugCommands.createReadyTrimCommand().build());
             commands.registrar().register(RollCommand.createRollTrimCommand().build());
         });
+
+        saveResource("trims.yml", false);
     }
 
     @Override
