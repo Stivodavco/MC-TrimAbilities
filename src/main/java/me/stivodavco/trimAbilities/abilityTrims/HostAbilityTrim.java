@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,7 +20,7 @@ public class HostAbilityTrim extends AbilityTrim {
     public static final PotionEffect WEAKNESS = new PotionEffect(PotionEffectType.WEAKNESS, EFFECT_DURATION * 20, 0);
 
     public HostAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, EFFECT_DURATION, 0, "Host", "Power Transfer");
+        super(newOwner, TrimPattern.HOST, AbilityType.LIMITED_TIME);
     }
 
     @Override

@@ -6,10 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class WayfinderAbilityTrim extends AbilityTrim {
     public WayfinderAbilityTrim(Player newOwner) {
-        super(newOwner, 960, AbilityType.INSTANT, 0, 0, "Wayfinder", "Lodewarp");
+        super(newOwner, TrimPattern.WAYFINDER, AbilityType.INSTANT);
     }
 
     @Override

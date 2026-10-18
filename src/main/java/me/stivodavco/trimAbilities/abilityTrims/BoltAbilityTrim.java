@@ -10,6 +10,7 @@ import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class BoltAbilityTrim extends AbilityTrim {
     public static final int LIGHTNING_CHANCE = 10;
 
     public BoltAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.INSTANT, 0, 0, "Bolt", "Lightning Strike");
+        super(newOwner, TrimPattern.BOLT, AbilityType.INSTANT);
     }
 
     @Override

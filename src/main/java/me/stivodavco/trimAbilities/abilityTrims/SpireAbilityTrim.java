@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -18,7 +19,7 @@ public class SpireAbilityTrim extends AbilityTrim {
     public final PotionEffect LEVITATION = new PotionEffect(PotionEffectType.LEVITATION, 10 * 20, 1);
 
     public SpireAbilityTrim(Player newOwner) {
-        super(newOwner, 90, AbilityType.INSTANT, 0, 0, "Spire", "Levitation Shroud");
+        super(newOwner, TrimPattern.SPIRE, AbilityType.INSTANT);
     }
 
     @Override

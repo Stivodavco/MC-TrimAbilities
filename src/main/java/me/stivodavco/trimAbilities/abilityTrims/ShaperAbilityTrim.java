@@ -3,6 +3,7 @@ package me.stivodavco.trimAbilities.abilityTrims;
 import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -15,7 +16,7 @@ public class ShaperAbilityTrim extends AbilityTrim {
     public BukkitTask runnable;
 
     public ShaperAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, 3, 0, "Shaper", "Short Flight");
+        super(newOwner, TrimPattern.SHAPER, AbilityType.LIMITED_TIME);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -29,7 +30,7 @@ public class TideAbilityTrim extends AbilityTrim {
     private BukkitTask abilityRunnable;
 
     public TideAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, 6, 0, "Tide", "Water Tornado");
+        super(newOwner, TrimPattern.TIDE, AbilityType.LIMITED_TIME);
     }
 
     @Override

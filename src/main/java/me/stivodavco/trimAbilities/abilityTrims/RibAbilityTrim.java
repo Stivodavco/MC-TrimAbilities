@@ -5,10 +5,11 @@ import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class RibAbilityTrim extends AbilityTrim {
     public RibAbilityTrim(Player newOwner) {
-        super(newOwner, 0, AbilityType.NONE, 0, 0, "Rib", "Tough as Bricks");
+        super(newOwner, TrimPattern.RIB, AbilityType.NONE);
     }
 
     @Override

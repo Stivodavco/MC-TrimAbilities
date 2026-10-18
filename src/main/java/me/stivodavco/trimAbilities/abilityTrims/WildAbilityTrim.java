@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,7 +33,7 @@ public class WildAbilityTrim extends AbilityTrim {
     private BukkitTask runnable;
 
     public WildAbilityTrim(Player newOwner) {
-        super(newOwner, 190, AbilityType.LIMITED_TIME, 5, 0, "Wild", "Vines");
+        super(newOwner, TrimPattern.WILD, AbilityType.LIMITED_TIME);
     }
 
     @Override

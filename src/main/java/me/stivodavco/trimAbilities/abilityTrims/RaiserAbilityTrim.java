@@ -10,6 +10,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.util.Vector;
 
 public class RaiserAbilityTrim extends AbilityTrim {
@@ -18,7 +19,7 @@ public class RaiserAbilityTrim extends AbilityTrim {
     public static final int DMG = 14;
 
     public RaiserAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.INSTANT, 0, 0, "Raiser", "Ground Slam");
+        super(newOwner, TrimPattern.RAISER, AbilityType.INSTANT);
     }
 
     @Override

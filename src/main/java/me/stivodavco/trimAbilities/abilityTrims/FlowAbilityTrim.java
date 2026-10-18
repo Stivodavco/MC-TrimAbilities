@@ -4,6 +4,7 @@ import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -13,7 +14,7 @@ public class FlowAbilityTrim extends AbilityTrim {
     public static final PotionEffect JUMP_BOOST = new PotionEffect(PotionEffectType.JUMP_BOOST, 10, 4, true, false);
 
     public FlowAbilityTrim(Player newOwner) {
-        super(newOwner, 5, AbilityType.INSTANT, 0, 0, "Flow", "Dash");
+        super(newOwner, TrimPattern.FLOW, AbilityType.INSTANT);
     }
 
     @Override

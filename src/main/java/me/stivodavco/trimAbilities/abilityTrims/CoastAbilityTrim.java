@@ -8,11 +8,10 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
-import org.bukkit.entity.ElderGuardian;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -29,7 +28,7 @@ public class CoastAbilityTrim extends AbilityTrim {
     public BukkitTask runnable;
 
     public CoastAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, 8, 0, "Coast", "Guardian Laser");
+        super(newOwner, TrimPattern.COAST, AbilityType.LIMITED_TIME);
     }
 
     @Override

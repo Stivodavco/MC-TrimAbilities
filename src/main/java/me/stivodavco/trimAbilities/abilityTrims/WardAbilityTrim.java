@@ -14,6 +14,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -39,7 +40,7 @@ public class WardAbilityTrim extends AbilityTrim {
     private Map<Player, Location> playerLocations = new HashMap<>();
 
     public WardAbilityTrim(Player newOwner) {
-        super(newOwner, 180, AbilityType.LIMITED_ACTIVATED_AFTER_USED, EFFECT_DURATION, 10, "Ward", "Sensitive Shriek");
+        super(newOwner, TrimPattern.WARD, AbilityType.LIMITED_ACTIVATED_AFTER_USED);
     }
 
     @Override

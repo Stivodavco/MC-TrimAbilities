@@ -17,6 +17,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class VexAbilityTrim extends AbilityTrim {
     public static final int EXTRA_DMG = 14;
 
     public VexAbilityTrim(Player newOwner) {
-        super(newOwner, 45, AbilityType.INSTANT, 0, 0, "Vex", "Crushing Fangs");
+        super(newOwner, TrimPattern.VEX, AbilityType.INSTANT);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class SnoutAbilityTrim extends AbilityTrim {
     public static TrimPattern PATTERN = null;
 
     public SnoutAbilityTrim(Player newOwner) {
-        super(newOwner, 120, AbilityType.LIMITED_TIME, 20, 0, "Snout", "Call for help");
+        super(newOwner, TrimPattern.SNOUT, AbilityType.LIMITED_TIME);
     }
 
     public void despawnPiglins() {

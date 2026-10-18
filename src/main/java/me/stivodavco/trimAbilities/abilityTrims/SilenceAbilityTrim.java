@@ -9,6 +9,7 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,7 +26,7 @@ public class SilenceAbilityTrim extends AbilityTrim {
     private BukkitTask runnable;
 
     public SilenceAbilityTrim(Player newOwner) {
-        super(newOwner, 0, AbilityType.NONE, 0, 0, "Silence", "Silent & Sneaky");
+        super(newOwner, TrimPattern.SILENCE, AbilityType.NONE);
     }
 
     private void setHidden(boolean hide) {

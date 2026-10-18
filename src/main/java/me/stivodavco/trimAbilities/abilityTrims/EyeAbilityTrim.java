@@ -9,6 +9,7 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,13 +20,11 @@ public class EyeAbilityTrim extends AbilityTrim {
     public static final PotionEffect GLOWING = new PotionEffect(PotionEffectType.GLOWING, 10 * 20, 255, true, false);
 
     public EyeAbilityTrim(Player newOwner) {
-        super(newOwner, 240, AbilityType.INSTANT, 0, 0, "Eye", "Ender Sight");
+        super(newOwner, TrimPattern.EYE, AbilityType.INSTANT);
     }
 
     @Override
     public void enable() {}
-
-
 
     @Override
     public void customAbility() {

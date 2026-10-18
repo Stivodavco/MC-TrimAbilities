@@ -7,6 +7,7 @@ import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -28,7 +29,7 @@ public class DuneAbilityTrim extends AbilityTrim {
     public static final int SPEED_AMPLIF = 2;
 
     public DuneAbilityTrim(Player newOwner) {
-        super(newOwner, 85, AbilityType.LIMITED_TIME, 5, 0, "Dune", "Sandstorm");
+        super(newOwner, TrimPattern.DUNE, AbilityType.LIMITED_TIME);
     }
 
     @Override
