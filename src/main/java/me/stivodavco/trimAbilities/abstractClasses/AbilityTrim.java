@@ -4,6 +4,7 @@ import com.destroystokyo.paper.ParticleBuilder;
 import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.utilities.ParticleUtils;
 import me.stivodavco.trimAbilities.utilities.TrimActionbar;
+import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -185,15 +186,19 @@ public abstract class AbilityTrim implements Listener {
 
     public abstract void internalUsed();
 
-    public AbilityTrim(@NotNull Player newOwner, int cooldown, @NotNull AbilityType activationType, int activationTime, int useTime, String name, String abilityName) {
+    public AbilityTrim(@NotNull Player newOwner, TrimPattern pattern, @NotNull AbilityType activationType) {
         owner = newOwner;
 
-        COOLDOWN = cooldown;
+        TrimRegistry.TrimKey trimKey = TrimRegistry.getTrimKey(pattern);
+        assert trimKey != null;
+
+        COOLDOWN = trimKey.abilityInfo().cooldown();
         ABILITY_TYPE = activationType;
-        ACTIVATION_TIME = activationTime;
-        USE_TIME = useTime;
-        NAME = name;
-        ABILITY_NAME = abilityName;
+        ACTIVATION_TIME = trimKey.abilityInfo().activationTime();
+        USE_TIME = trimKey.abilityInfo().useTime();
+        NAME = trimKey.name();
+        ABILITY_NAME = trimKey.abilityInfo().name();
+        PATTERN = pattern;
 
         resetCooldown();
         resetActivatedTime();

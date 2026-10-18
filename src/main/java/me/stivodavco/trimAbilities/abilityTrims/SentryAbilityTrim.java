@@ -4,11 +4,11 @@ import me.stivodavco.trimAbilities.TrimAbilities;
 import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
 import me.stivodavco.trimAbilities.utilities.RandomnessUtils;
 import me.stivodavco.trimAbilities.utilities.Storage;
-import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Sound;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -22,14 +22,7 @@ public class SentryAbilityTrim extends AbilityTrim {
     private BukkitTask runnable;
 
     public SentryAbilityTrim(Player newOwner) {
-        super(newOwner,
-            TrimRegistry.getConfig().getInt("sentry.ability.cooldown"),
-            AbilityType.LIMITED_TIME,
-            TrimRegistry.getConfig().getInt("sentry.ability.activation-time"),
-            TrimRegistry.getConfig().getInt("sentry.ability.use-time"),
-            TrimRegistry.getConfig().getString("sentry.name"),
-            TrimRegistry.getConfig().getString("sentry.ability.name"));
-        TrimAbilities.getInstance().getLogger().info(String.valueOf(TrimRegistry.getConfig().getInt("sentry.cooldown")));
+        super(newOwner, TrimPattern.SENTRY, AbilityType.LIMITED_TIME);
     }
 
     @Override

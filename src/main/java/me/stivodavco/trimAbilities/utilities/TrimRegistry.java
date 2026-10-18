@@ -16,26 +16,58 @@ import static java.util.Map.entry;
 
 public class TrimRegistry {
     public record PassiveInfo(String name, String description) {}
-
     public record AbilityInfo(String name, String description, int cooldown, int activationTime, int useTime) {}
+
+    public static PassiveInfo passiveInfoFromConfig(String trimName) {
+        trimName = trimName.toLowerCase();
+        YamlConfiguration config = getConfig();
+
+        String name = getConfig().getString(trimName + ".passive.name");
+        String desc = getConfig().getString(trimName + ".passive.name");
+
+        return new PassiveInfo(name, desc);
+    }
+
+    public static AbilityInfo abilityInfoFromConfig(String trimName) {
+        trimName = trimName.toLowerCase();
+        YamlConfiguration config = getConfig();
+
+        String name = getConfig().getString(trimName + ".ability.name");
+        String desc = getConfig().getString(trimName + ".ability.name");
+
+        int cooldown = getConfig().getInt(trimName + ".ability.cooldown");
+        int activationTime = getConfig().getInt(trimName + ".ability.activation-time");;
+        int useTime = getConfig().getInt(trimName + ".ability.use-time");;
+
+        return new AbilityInfo(name, desc, cooldown, activationTime, useTime);
+    }
 
     public record TrimKey(String name, String title, Class<? extends AbilityTrim> clazz, NamespacedKey itemKey, PassiveInfo passiveInfo, AbilityInfo abilityInfo) {}
 
     private static final YamlConfiguration TRIM_CONFIG = YamlConfiguration.loadConfiguration(new File(TrimAbilities.getInstance().getDataFolder(), "trims.yml"));
 
-    private static final Map<TrimPattern, TrimKey> TRIM_DATA = Map.ofEntries(
+    private static final Map<TrimPattern, TrimKey> TRIM_KEYS = Map.ofEntries(
         entry(TrimPattern.SENTRY, new TrimKey(
-            "Sentry",
-            getConfig().getString("sentry.title"),
+            TRIM_CONFIG.getString("sentry.name"),
+            TRIM_CONFIG.getString("sentry.title"),
             SentryAbilityTrim.class,
             NamespacedKey.minecraft("sentry_armor_trim_smithing_template"),
-            new PassiveInfo(getConfig().getString("sentry.passive.name"), getConfig().getString("sentry.passive.description")),
-            new AbilityInfo(getConfig().getString("sentry.passive.name"), "n/a", getConfig().getInt("sentry.cooldown"), getConfig().getInt("sentry.activation-time"), getConfig().getInt("sentry.use-time"))
+            passiveInfoFromConfig("sentry"), abilityInfoFromConfig("sentry")
             ))
     );
 
     public static @Nullable TrimKey getTrimKey(TrimPattern pattern) {
-        return TRIM_DATA.getOrDefault(pattern, null);
+        return TRIM_KEYS.getOrDefault(pattern, null);
+    }
+
+    public static @Nullable TrimKey getTrimKey(Class<? extends AbilityTrim> clazz) {
+        TrimKey match = null;
+        for (TrimKey key : TRIM_KEYS.values()) {
+            if (key.clazz == clazz) {
+                match = key;
+            }
+        }
+        return match;
     }
 
     public static @NotNull YamlConfiguration getConfig() {
