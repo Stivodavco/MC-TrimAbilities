@@ -4,6 +4,7 @@ import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import me.stivodavco.trimAbilities.commands.DebugCommands;
 import me.stivodavco.trimAbilities.commands.RollCommand;
 import me.stivodavco.trimAbilities.listeners.AbilityListener;
+import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +27,7 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
         });
 
         saveResource("trims.yml", false);
+        TrimRegistry.generateTrimKeys();
     }
 
     @Override

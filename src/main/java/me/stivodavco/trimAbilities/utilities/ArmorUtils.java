@@ -60,6 +60,9 @@ public class ArmorUtils {
     }
 
     public static @Nullable AbilityTrim createInstance(@NotNull Class< ? extends AbilityTrim> clazz, @NotNull Player owner) {
+        if (TrimRegistry.getTrimKey(clazz) == null) {
+            return null;
+        }
         try {
             return clazz.getDeclaredConstructor(Player.class).newInstance(owner);
         } catch (Exception e) {
