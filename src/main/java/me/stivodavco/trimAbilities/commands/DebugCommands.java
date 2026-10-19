@@ -20,8 +20,13 @@ import org.bukkit.inventory.meta.trim.TrimMaterial;
 import org.bukkit.inventory.meta.trim.TrimPattern;
 
 public class DebugCommands {
+    private static final String debugPermission = "trimabilities.debug";
+
     public static LiteralArgumentBuilder<CommandSourceStack> createSetTrimCommand() {
-        return Commands.literal("equiptrim").then(Commands.argument("trimPattern", ArgumentTypes.resource(RegistryKey.TRIM_PATTERN))
+        return Commands
+                .literal("equiptrim")
+                .requires(source -> source.getSender().hasPermission(debugPermission))
+                .then(Commands.argument("trimPattern", ArgumentTypes.resource(RegistryKey.TRIM_PATTERN))
                 .executes(context -> {
                     TrimPattern pattern = context.getArgument("trimPattern", TrimPattern.class);
 
@@ -46,7 +51,10 @@ public class DebugCommands {
     }
 
     public static LiteralArgumentBuilder<CommandSourceStack> createReadyTrimCommand() {
-        return Commands.literal("readytrim").then(Commands.argument("player", ArgumentTypes.player())
+        return Commands
+                .literal("readytrim")
+                .requires(source -> source.getSender().hasPermission(debugPermission))
+                .then(Commands.argument("player", ArgumentTypes.player())
                 .executes(context -> {
                     Player player = context.getArgument("player", PlayerSelectorArgumentResolver.class).resolve(context.getSource()).getFirst();
 
