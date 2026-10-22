@@ -1,6 +1,6 @@
 package me.stivodavco.trimAbilities.abstractClasses
 
-interface Disablable {
+interface Disableable {
     var enabled: Boolean
 
     fun enable() {
