@@ -3,7 +3,7 @@ package me.stivodavco.trimAbilities.abstractClasses
 import me.stivodavco.trimAbilities.utilities.TrimRegistry
 import org.bukkit.inventory.meta.trim.TrimPattern
 
-interface Ability : Disableable, RequiresOwner {
+interface Ability : Disableable {
     val cooldown: Int
         get() = disableWhenNull(TrimRegistry.getTrimKey(pattern)?.abilityInfo()?.cooldown(), 0)
 

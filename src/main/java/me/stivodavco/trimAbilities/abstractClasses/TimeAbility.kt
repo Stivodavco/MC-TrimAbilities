@@ -3,7 +3,7 @@ package me.stivodavco.trimAbilities.abstractClasses
 import me.stivodavco.trimAbilities.utilities.TrimRegistry
 
 interface TimeAbility : Ability {
-    val ACTIVATION_TIME: Int
+    val activationTime: Int
         get() = disableWhenNull(TrimRegistry.getTrimKey(pattern)?.abilityInfo()?.activationTime(), 0)
     var activeTimeLeft: Int
     var active: Boolean
@@ -14,7 +14,7 @@ interface TimeAbility : Ability {
     }
 
     private fun internalReset() {
-        activeTimeLeft = ACTIVATION_TIME
+        activeTimeLeft = activationTime
         active = false
     }
 

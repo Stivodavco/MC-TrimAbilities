@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
 
-class SentryAbilitySet(owner: Player) : AbilitySet(owner), TimeAbility {
+class SentryAbilitySet(override val owner: Player) : AbilitySet, TimeAbility {
     override var activeTimeLeft = 0
     override var active = false
     override val pattern = TrimPattern.SENTRY
