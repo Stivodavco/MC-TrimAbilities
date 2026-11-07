@@ -1,37 +1,27 @@
-package me.stivodavco.trimAbilities.utilities;
+package me.stivodavco.trimAbilities.utilities
 
-import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import me.stivodavco.trimAbilities.abstractClasses.Ability
+import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
+import org.bukkit.entity.Player
 
-import java.util.HashMap;
+object Storage {
+    private val activeSet = mutableMapOf<Player, AbilitySet>()
 
-public class Storage {
-    private static HashMap<Player, AbilityTrim> activeTrim = new HashMap<>();
-
-    public static @Nullable AbilityTrim getAbilityTrim(@NotNull Player player) {
-        return activeTrim.get(player);
+    fun getAbilitySet(player: Player): AbilitySet? {
+        return activeSet[player]
     }
 
-    public static void setActiveTrim(Player player, AbilityTrim trim) {
-        if (trim != null) {
-            if (activeTrim.get(player) == null) {
-                activeTrim.put(player, trim);
-            } else {
-                activeTrim.replace(player, trim);
-            }
+    fun setAbilitySet(player: Player, set: AbilitySet?) {
+        if (set != null) {
+            activeSet[player] = set
         } else {
-            AbilityTrim prevTrim = getAbilityTrim(player);
+            val prevSet: AbilitySet? = getAbilitySet(player)
 
-            if (prevTrim != null) {
-                prevTrim.disable();
+            if (prevSet is Ability) {
+                prevSet.destroy()
             }
-            activeTrim.remove(player);
-        }
-    }
 
-    public static HashMap<Player, AbilityTrim> getActiveTrims() {
-        return activeTrim;
+            activeSet.remove(player)
+        }
     }
 }

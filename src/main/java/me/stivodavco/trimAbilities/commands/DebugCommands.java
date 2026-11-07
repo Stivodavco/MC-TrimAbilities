@@ -7,8 +7,8 @@ import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
 import io.papermc.paper.registry.RegistryKey;
-import me.stivodavco.trimAbilities.abstractClasses.AbilityTrim;
-import me.stivodavco.trimAbilities.utilities.ArmorUtils;
+import me.stivodavco.trimAbilities.abstractClasses.Ability;
+import me.stivodavco.trimAbilities.abstractClasses.AbilitySet;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -39,11 +39,11 @@ public class DebugCommands {
                                 item.setItemMeta(meta);
                             }
                         }
-                        ArmorUtils.equipTrimIfPresent(executor);
-                        AbilityTrim abilityTrim = Storage.getAbilityTrim(executor);
-                        if (abilityTrim != null) {
-                            abilityTrim.cooldownLeft = 0;
-                        }
+//                        ArmorUtils.equipTrimIfPresent(executor);
+//                        AbilityTrim abilityTrim = Storage.getAbilityTrim(executor);
+//                        if (abilityTrim != null) {
+//                            abilityTrim.cooldownLeft = 0;
+//                        }
                     }
                     return Command.SINGLE_SUCCESS;
         }))
@@ -58,9 +58,9 @@ public class DebugCommands {
                 .executes(context -> {
                     Player player = context.getArgument("player", PlayerSelectorArgumentResolver.class).resolve(context.getSource()).getFirst();
 
-                    AbilityTrim abilityTrim = Storage.getAbilityTrim(player);
-                    if (abilityTrim != null) {
-                        abilityTrim.cooldownLeft = 0;
+                    AbilitySet abilitySet = Storage.INSTANCE.getAbilitySet(player);
+                    if (abilitySet instanceof Ability ability) {
+                        ability.setCooldownLeft(0);
                         player.sendMessage(Component.text(String.format("Successfully cleared the cooldown for player %s's equipped armor trim. ", player.getName())).color(NamedTextColor.GREEN));
                     } else {
                         player.sendMessage(Component.text(String.format("Failed for %s; Nonexistent player or that player has no equipped armor trim.", player.getName())).color(NamedTextColor.RED));

@@ -115,9 +115,11 @@ sentry:
   title: Archery
   description: Fires arrows automatically at nearby hostile mobs.
   passive:
+    enabled: true
     name: Noclip arrows
     description: Each time an arrow hits you, there's an 80% chance it does no damage.
   ability:
+    enabled: true
     name: Turret
     description: You fire arrows for 30 seconds at nearby players/mobs.
     cooldown: 60

@@ -7,7 +7,7 @@ import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
 import org.apache.commons.lang3.StringUtils
 import org.bukkit.inventory.meta.trim.TrimPattern
 
-val TrimPattern.clazz : Class<out AbilitySet>?
+val TrimPattern.abilitySetClass : Class<out AbilitySet>?
     get() {
         val key = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).getKey(this)
         val name = key!!.asString().substring(10)

@@ -3,9 +3,12 @@ package me.stivodavco.trimAbilities.abstractClasses
 import me.stivodavco.trimAbilities.utilities.TrimRegistry
 import org.bukkit.inventory.meta.trim.TrimPattern
 
-interface Ability : Disableable {
+interface Ability {
+    val abilityEnabled: Boolean
+        get() = TrimRegistry.getTrimKey(pattern)?.abilityInfo?.enabled ?: false
+
     val cooldown: Int
-        get() = disableWhenNull(TrimRegistry.getTrimKey(pattern)?.abilityInfo()?.cooldown(), 0)
+        get() = TrimRegistry.getTrimKey(pattern)?.abilityInfo?.cooldown ?: 0
 
     val pattern: TrimPattern
     var cooldownLeft: Int
@@ -15,13 +18,14 @@ interface Ability : Disableable {
     }
 
     fun ability(): Boolean {
-        if (!enabled) { return false }
+        if (!abilityEnabled) { return false }
 
         if (cooldownLeft <= 0) {
             internalAbility()
             reset()
+            return true
         }
-        return true
+        return false
     }
 
     fun tick() {

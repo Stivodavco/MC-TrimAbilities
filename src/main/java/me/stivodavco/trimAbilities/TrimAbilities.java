@@ -3,7 +3,7 @@ package me.stivodavco.trimAbilities;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import me.stivodavco.trimAbilities.commands.DebugCommands;
 import me.stivodavco.trimAbilities.commands.RollCommand;
-import me.stivodavco.trimAbilities.listeners.AbilityListener;
+import me.stivodavco.trimAbilities.listeners.TrimListener;
 import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
     public void onEnable() {
         instance = this;
         Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getPluginManager().registerEvents(new AbilityListener(), this);
+        Bukkit.getPluginManager().registerEvents(new TrimListener(), this);
 
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
             commands.registrar().register(DebugCommands.createSetTrimCommand().build());
