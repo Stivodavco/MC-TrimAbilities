@@ -1,6 +1,5 @@
 package me.stivodavco.trimAbilities.utilities
 
-import me.stivodavco.trimAbilities.abstractClasses.Ability
 import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
 import org.bukkit.entity.Player
 
@@ -17,9 +16,7 @@ object Storage {
         } else {
             val prevSet: AbilitySet? = getAbilitySet(player)
 
-            if (prevSet is Ability) {
-                prevSet.destroy()
-            }
+            prevSet?.destroy()
 
             activeSet.remove(player)
         }
