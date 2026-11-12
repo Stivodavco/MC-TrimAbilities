@@ -77,8 +77,8 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
     }
 
     companion object {
-        const val BLOCK_CHANCE = 80
-        const val RANGE = 5.0
-        const val ARROW_DELAY_TICKS = 20
+        val BLOCK_CHANCE = TrimAbilities.getTrimsConfig().getInt("sentry.passive.block-chance-percent")
+        val RANGE = TrimAbilities.getTrimsConfig().getDouble("sentry.ability.range")
+        val ARROW_DELAY_TICKS = TrimAbilities.getTrimsConfig().getInt("sentry.ability.arrow-delay-ticks")
     }
 }

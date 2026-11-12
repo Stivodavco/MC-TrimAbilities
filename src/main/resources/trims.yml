@@ -113,18 +113,20 @@ rib:
 sentry:
   name: Sentry
   title: Archery
-  description: Fires arrows automatically at nearby hostile mobs.
+  description: No description yet
   passive:
     enabled: true
     name: Noclip arrows
     description: Each time an arrow hits you, there's an 80% chance it does no damage.
+    block-chance-percent: 80
   ability:
     enabled: true
     name: Turret
-    description: You fire arrows for 30 seconds at nearby players/mobs.
+    description: You fire arrows for 10 seconds at nearby players/mobs.
     cooldown: 60
-    activation-time: 30
-    use-time: 0
+    activation-time: 10
+    range: 5.0
+    arrow-delay-ticks: 30
 
 shaper:
   name: ""
