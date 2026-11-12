@@ -1,119 +1,22 @@
-bolt:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-coast:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
 dune:
-  name: ""
-  title: ""
-  description: ""
+  name: Dune
+  title: Sand
   passive:
-    name: ""
-    description: ""
+    name: Sandturation
+    description: You never lose hunger.
   ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-eye:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-flow:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-host:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-raiser:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-rib:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
+    name: Sandstorm
+    description: Summon a sand shroud inflicting any player within 10 blocks of you with blindness and slowness, while you gain speed.
+    cooldown: 85
+    activation-time: 5
+    radius: 10.0
+    blindness-amplifier: 2
+    slowness-amplifier: 2
+    speed-amplifier: 2
 
 sentry:
   name: Sentry
   title: Archery
-  description: No description yet
   passive:
     enabled: true
     name: Noclip arrows
@@ -123,133 +26,7 @@ sentry:
     enabled: true
     name: Turret
     description: You fire arrows for 10 seconds at nearby players/mobs.
-    cooldown: 60
-    activation-time: 10
+    cooldown: 90
+    activation-time: 30
     range: 5.0
     arrow-delay-ticks: 30
-
-shaper:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-silence:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-snout:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-spire:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-tide:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-vex:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-ward:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-wayfinder:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-wild:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
