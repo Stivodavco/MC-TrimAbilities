@@ -8,8 +8,9 @@ import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
 import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
+import me.stivodavco.trimAbilities.TrimAbilities;
+import me.stivodavco.trimAbilities.extensions.TrimPatternExtKt;
 import me.stivodavco.trimAbilities.utilities.AnimationBuilder;
-import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,7 +18,6 @@ import net.kyori.adventure.title.Title;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -55,21 +55,21 @@ public class RollCommand {
                             NamespacedKey randKey = getRandomTrim();
 
                             TrimPattern pattern = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).get(randKey);
-                            TrimRegistry.TrimKey trimKey = TrimRegistry.getTrimKey(pattern);
-                            assert trimKey != null;
+
+                            String patternString = pattern.toString().substring(10);
+                            String name = TrimAbilities.getTrimsConfig().getString(patternString + ".name");
+                            String trimTitle = TrimAbilities.getTrimsConfig().getString(patternString + ".title");
 
                             Title title = Title.title(
-                                    Component.text(trimKey.name()).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),
-                                    Component.text("The trim of " + trimKey.title()).color(NamedTextColor.GRAY)
+                                    Component.text(name).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),
+                                    Component.text("The trim of " + trimTitle).color(NamedTextColor.GRAY)
                             , 10, 80, 10);
                             player.showTitle(title);
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 1);
                             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
 
-                            Material template = Registry.MATERIAL.get(trimKey.itemKey());
-                            if (template != null) {
-                                player.give(ItemStack.of(template));
-                            }
+                            Material template = TrimPatternExtKt.getItemMaterial(pattern);
+                            player.give(ItemStack.of(template));
                         };
 
                         AnimationBuilder animation = new AnimationBuilder();

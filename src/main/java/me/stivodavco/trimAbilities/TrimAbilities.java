@@ -4,12 +4,10 @@ import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import me.stivodavco.trimAbilities.commands.DebugCommands;
 import me.stivodavco.trimAbilities.commands.RollCommand;
 import me.stivodavco.trimAbilities.listeners.TrimListener;
-import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 
@@ -31,7 +29,6 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
 
         saveResource("trims.yml", false);
         trimsConfig = YamlConfiguration.loadConfiguration(new File(TrimAbilities.getInstance().getDataFolder(), "trims.yml"));
-        TrimRegistry.generateTrimKeys();
     }
 
     @Override

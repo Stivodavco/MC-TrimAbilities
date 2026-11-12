@@ -1,11 +1,12 @@
 package me.stivodavco.trimAbilities.abstractClasses
 
-import me.stivodavco.trimAbilities.utilities.TrimRegistry
+import me.stivodavco.trimAbilities.TrimAbilities
+import me.stivodavco.trimAbilities.extensions.keyName
 import org.bukkit.inventory.meta.trim.TrimPattern
 
 interface Passive {
     val passiveEnabled: Boolean
-        get() = TrimRegistry.getTrimKey(pattern)?.passiveInfo?.enabled ?: false
+        get() = TrimAbilities.getTrimsConfig().getBoolean("${pattern.keyName}.passive.enabled")
 
     val pattern: TrimPattern
 

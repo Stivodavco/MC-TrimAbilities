@@ -5,6 +5,7 @@ import me.stivodavco.trimAbilities.abstractClasses.Ability
 import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
 import me.stivodavco.trimAbilities.abstractClasses.Passive
 import me.stivodavco.trimAbilities.abstractClasses.TimeAbility
+import me.stivodavco.trimAbilities.extensions.keyName
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
@@ -24,7 +25,7 @@ class AbilityActionbar(val owner: Player, val abilitySet: AbilitySet) {
     }
 
     fun getPassiveComponent() : Component {
-        val name = TrimRegistry.getTrimKey(abilitySet.pattern)?.passiveInfo?.name ?: "N/A"
+        val name = TrimAbilities.getTrimsConfig().getString("${abilitySet.pattern.keyName}.passive.name")
 
         return Component.text(" [$name]").
             color(TextColor.color(135, 135, 135)).decorate(TextDecoration.ITALIC)
@@ -38,7 +39,7 @@ class AbilityActionbar(val owner: Player, val abilitySet: AbilitySet) {
     }
 
     fun getAbilityComponent() : Component {
-        val name = TrimRegistry.getTrimKey(abilitySet.pattern)?.abilityInfo?.name ?: "N/A"
+        val name = TrimAbilities.getTrimsConfig().getString("${abilitySet.pattern.keyName}.ability.name") ?: "N/A"
         val base = Component.text(" $name ").color(TextColor.color(253, 131, 255)).decorate(TextDecoration.BOLD)
 
         var cooldown: Component

@@ -1,14 +1,15 @@
 package me.stivodavco.trimAbilities.abstractClasses
 
-import me.stivodavco.trimAbilities.utilities.TrimRegistry
+import me.stivodavco.trimAbilities.TrimAbilities
+import me.stivodavco.trimAbilities.extensions.keyName
 import org.bukkit.inventory.meta.trim.TrimPattern
 
 interface Ability {
     val abilityEnabled: Boolean
-        get() = TrimRegistry.getTrimKey(pattern)?.abilityInfo?.enabled ?: false
+        get() = TrimAbilities.getTrimsConfig().getBoolean("${pattern.keyName}.ability.enabled")
 
     val cooldown: Int
-        get() = TrimRegistry.getTrimKey(pattern)?.abilityInfo?.cooldown ?: 0
+        get() = TrimAbilities.getTrimsConfig().getInt("${pattern.keyName}.ability.cooldown")
 
     val pattern: TrimPattern
     var cooldownLeft: Int

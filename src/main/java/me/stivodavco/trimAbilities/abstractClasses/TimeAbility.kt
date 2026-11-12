@@ -1,10 +1,11 @@
 package me.stivodavco.trimAbilities.abstractClasses
 
-import me.stivodavco.trimAbilities.utilities.TrimRegistry
+import me.stivodavco.trimAbilities.TrimAbilities
+import me.stivodavco.trimAbilities.extensions.keyName
 
 interface TimeAbility : Ability {
     val activationTime: Int
-        get() = TrimRegistry.getTrimKey(pattern)?.abilityInfo()?.activationTime() ?: 0
+        get() = TrimAbilities.getTrimsConfig().getInt("${pattern.keyName}.ability.activation-time")
     var activeTimeLeft: Int
     var active: Boolean
 
