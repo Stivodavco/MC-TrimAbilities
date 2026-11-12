@@ -19,7 +19,7 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
     override var active = false
     override var cooldownLeft = cooldown
 
-    var runnable: BukkitTask? = null
+    private var runnable: BukkitTask? = null
 
     override fun internalAbility() {
         runnable = object : BukkitRunnable() {
