@@ -21,10 +21,6 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
 
     var runnable: BukkitTask? = null
 
-    val blockChance = 80
-    val range = 5.0
-    val arrowDelayTicks = 20
-
     init {
         passive()
     }
@@ -38,9 +34,9 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
                 }
 
                 val nearbyEntities: MutableList<Entity> = owner.getNearbyEntities(
-                    range,
-                    range,
-                    range
+                    RANGE,
+                    RANGE,
+                    RANGE
                 )
 
                 for (entity in nearbyEntities) {
@@ -57,12 +53,14 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
                     }
                 }
             }
-        }.runTaskTimer(TrimAbilities.getInstance(), 0, arrowDelayTicks.toLong())
+        }.runTaskTimer(TrimAbilities.getInstance(), 0, ARROW_DELAY_TICKS.toLong())
     }
 
     override fun internalDestroy() {
         runnable?.cancel()
     }
+
+    override fun internalPassive() {}
 
     /* EVENTS */
     @EventHandler
@@ -74,7 +72,7 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
         val entity = e.entity
         if (entity is Player) {
             if (Storage.getAbilitySet(entity) is SentryAbilitySet) {
-                if (e.damageSource.directEntity is Arrow && RandomnessUtils.chance(blockChance)) {
+                if (e.damageSource.directEntity is Arrow && RandomnessUtils.chance(BLOCK_CHANCE)) {
                     entity.world.playSound(entity.location, Sound.ITEM_SHIELD_BLOCK, 1f, 1f)
                     e.isCancelled = true
                 }
@@ -82,5 +80,9 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
         }
     }
 
-    override fun internalPassive() {}
+    companion object {
+        const val BLOCK_CHANCE = 80
+        const val RANGE = 5.0
+        const val ARROW_DELAY_TICKS = 20
+    }
 }
