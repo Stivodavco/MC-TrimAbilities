@@ -21,10 +21,6 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
 
     var runnable: BukkitTask? = null
 
-    init {
-        passive()
-    }
-
     override fun internalAbility() {
         runnable = object : BukkitRunnable() {
             override fun run() {
