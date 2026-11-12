@@ -6,13 +6,16 @@ import me.stivodavco.trimAbilities.commands.RollCommand;
 import me.stivodavco.trimAbilities.listeners.TrimListener;
 import me.stivodavco.trimAbilities.utilities.TrimRegistry;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
+
 public final class TrimAbilities extends JavaPlugin implements Listener {
     private static JavaPlugin instance;
-    private static BukkitRunnable actionbarRunnable;
+    private static YamlConfiguration trimsConfig;
 
     @Override
     public void onEnable() {
@@ -27,6 +30,7 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
         });
 
         saveResource("trims.yml", false);
+        trimsConfig = YamlConfiguration.loadConfiguration(new File(TrimAbilities.getInstance().getDataFolder(), "trims.yml"));
         TrimRegistry.generateTrimKeys();
     }
 
@@ -36,5 +40,5 @@ public final class TrimAbilities extends JavaPlugin implements Listener {
     }
 
     public static JavaPlugin getInstance() { return instance; }
-    public static BukkitRunnable getActionbarRunnable() { return actionbarRunnable; }
+    public static YamlConfiguration getTrimsConfig() { return trimsConfig; }
 }
