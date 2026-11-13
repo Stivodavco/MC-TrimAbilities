@@ -1,253 +1,59 @@
-bolt:
-  name: ""
-  title: ""
-  description: ""
+snout:
+  name: Snout
+  title: Nether Alliance
   passive:
-    name: ""
-    description: ""
+    enabled: true
+    name: Piglin Commander
+    description: Piglins never attack you. You can always accept or reject the result of any barter, refunding the gold if you reject.
   ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-coast:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-dune:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
+    enabled: true
+    name: Call for help
+    description: Summons 3 piglins and a piglin brute that don't attack you, despawning after 20s.
+    cooldown: 120
+    activation-time: 20
 
 eye:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
+  name: Eye
+  title: Teleportation
   ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
+    enabled: true
+    name: Ender Sight
+    description: Teleport to the block you are looking at within an 80 block distance.
+    cooldown: 85
+    max-teleport-distance: 80
+    glow-duration-ticks: 200
 
-flow:
-  name: ""
-  title: ""
-  description: ""
+dune:
+  name: Dune
+  title: Sand
   passive:
-    name: ""
-    description: ""
+    enabled: true
+    name: Sandturation
+    description: You never lose hunger.
   ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-host:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-raiser:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-rib:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
+    enabled: true
+    name: Sandstorm
+    description: Summon a sand shroud inflicting any player within 10 blocks of you with blindness and slowness, while you gain speed.
+    cooldown: 85
+    activation-time: 5
+    radius: 10.0
+    blindness-amplifier: 2
+    slowness-amplifier: 2
+    speed-amplifier: 2
 
 sentry:
   name: Sentry
   title: Archery
-  description: Fires arrows automatically at nearby hostile mobs.
   passive:
     enabled: true
     name: Noclip arrows
     description: Each time an arrow hits you, there's an 80% chance it does no damage.
+    block-chance-percent: 80
   ability:
     enabled: true
     name: Turret
-    description: You fire arrows for 30 seconds at nearby players/mobs.
-    cooldown: 60
+    description: You fire arrows for 10 seconds at nearby players/mobs.
+    cooldown: 90
     activation-time: 30
-    use-time: 0
-
-shaper:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-silence:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-snout:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-spire:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-tide:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-vex:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-ward:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-wayfinder:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
-
-wild:
-  name: ""
-  title: ""
-  description: ""
-  passive:
-    name: ""
-    description: ""
-  ability:
-    name: ""
-    description: ""
-    cooldown: 0
-    activation-time: 0
-    use-time: 0
+    range: 5.0
+    arrow-delay-ticks: 30

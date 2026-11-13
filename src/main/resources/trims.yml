@@ -1,7 +1,22 @@
+snout:
+  name: Snout
+  title: Nether Alliance
+  passive:
+    enabled: true
+    name: Piglin Commander
+    description: Piglins never attack you. You can always accept or reject the result of any barter, refunding the gold if you reject.
+  ability:
+    enabled: true
+    name: Call for help
+    description: Summons 3 piglins and a piglin brute that don't attack you, despawning after 20s.
+    cooldown: 120
+    activation-time: 20
+
 eye:
   name: Eye
   title: Teleportation
   ability:
+    enabled: true
     name: Ender Sight
     description: Teleport to the block you are looking at within an 80 block distance.
     cooldown: 85
@@ -12,9 +27,11 @@ dune:
   name: Dune
   title: Sand
   passive:
+    enabled: true
     name: Sandturation
     description: You never lose hunger.
   ability:
+    enabled: true
     name: Sandstorm
     description: Summon a sand shroud inflicting any player within 10 blocks of you with blindness and slowness, while you gain speed.
     cooldown: 85
