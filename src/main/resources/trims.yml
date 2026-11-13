@@ -1,3 +1,13 @@
+eye:
+  name: Eye
+  title: Teleportation
+  ability:
+    name: Ender Sight
+    description: Teleport to the block you are looking at within an 80 block distance.
+    cooldown: 85
+    max-teleport-distance: 80
+    glow-duration-ticks: 200
+
 dune:
   name: Dune
   title: Sand
