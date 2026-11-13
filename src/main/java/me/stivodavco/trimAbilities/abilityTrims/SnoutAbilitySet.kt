@@ -59,7 +59,7 @@ class SnoutAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SNOUT),
         despawnPiglins()
 
         for (item in owner.inventory.contents) {
-            if (item?.persistentDataContainer!!.has(KEY)) {
+            if (item?.persistentDataContainer?.has(KEY) == true) {
                 clearItem(item)
             }
         }

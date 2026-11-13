@@ -56,9 +56,9 @@ public class RollCommand {
 
                             TrimPattern pattern = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).get(randKey);
 
-                            String patternString = pattern.toString().substring(10);
-                            String name = TrimAbilities.getTrimsConfig().getString(patternString + ".name");
-                            String trimTitle = TrimAbilities.getTrimsConfig().getString(patternString + ".title");
+                            String patternString = randKey.asString().substring(10);
+                            String name = TrimAbilities.getTrimsConfig().getString(patternString + ".name", "N/A");
+                            String trimTitle = TrimAbilities.getTrimsConfig().getString(patternString + ".title", "N/A");
 
                             Title title = Title.title(
                                     Component.text(name).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD),

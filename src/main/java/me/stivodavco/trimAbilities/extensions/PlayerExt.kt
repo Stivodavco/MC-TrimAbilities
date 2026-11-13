@@ -46,7 +46,7 @@ fun Player.equipSetIfPresent() {
 
             abilitySet = instance
         }
-    } else if (abilitySet != null) {
+    } else if (!isWearingFullSet() && abilitySet != null) {
         abilitySet = null
     }
 }
