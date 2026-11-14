@@ -42,7 +42,9 @@ class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), A
             TrimAbilities.getInstance().logger.info(loc.toString())
 
             for (entity in owner.world.getNearbyLivingEntities(loc, 1.0)) {
-                entity.damage(DAMAGE)
+                if (entity != owner) {
+                    entity.damage(DAMAGE)
+                }
             }
         }
 
