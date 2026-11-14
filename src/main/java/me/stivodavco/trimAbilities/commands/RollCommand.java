@@ -28,6 +28,7 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 public class RollCommand {
+    private static final String rollPermission = "trimabilities.roll";
     private static NamespacedKey getRandomTrim() {
         List<NamespacedKey> keys = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).keyStream().toList();
 
@@ -37,7 +38,9 @@ public class RollCommand {
     }
 
     public static LiteralArgumentBuilder<CommandSourceStack> createRollTrimCommand() {
-        return Commands.literal("rolltrim").then(Commands.argument("targets", ArgumentTypes.players())
+        return Commands.literal("rolltrim")
+                .requires(source -> source.getSender().hasPermission(rollPermission))
+                .then(Commands.argument("targets", ArgumentTypes.players())
                 .executes(context -> {
                     List<Player> players = context.getArgument("targets", PlayerSelectorArgumentResolver.class).resolve(context.getSource());
 

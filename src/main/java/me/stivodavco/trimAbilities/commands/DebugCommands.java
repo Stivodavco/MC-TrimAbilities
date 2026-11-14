@@ -9,6 +9,7 @@ import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSele
 import io.papermc.paper.registry.RegistryKey;
 import me.stivodavco.trimAbilities.abstractClasses.Ability;
 import me.stivodavco.trimAbilities.abstractClasses.AbilitySet;
+import me.stivodavco.trimAbilities.extensions.PlayerExtKt;
 import me.stivodavco.trimAbilities.utilities.Storage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -39,6 +40,8 @@ public class DebugCommands {
                                 item.setItemMeta(meta);
                             }
                         }
+                        PlayerExtKt.equipSetIfPresent(executor);
+
 //                        ArmorUtils.equipTrimIfPresent(executor);
 //                        AbilityTrim abilityTrim = Storage.getAbilityTrim(executor);
 //                        if (abilityTrim != null) {
