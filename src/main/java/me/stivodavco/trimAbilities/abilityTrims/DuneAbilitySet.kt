@@ -8,7 +8,7 @@ import me.stivodavco.trimAbilities.abstractClasses.TimeAbility
 import me.stivodavco.trimAbilities.utilities.ParticleUtils
 import org.bukkit.Color
 import org.bukkit.Particle
-import org.bukkit.entity.*
+import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.trim.TrimPattern
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
@@ -17,6 +17,10 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
     override var activeTimeLeft = 0
     override var active = false
     override var cooldownLeft = cooldown
+
+    init {
+        passive()
+    }
 
     override fun internalAbility() {
         val nearby = owner.getNearbyEntities(RADIUS, RADIUS, RADIUS)

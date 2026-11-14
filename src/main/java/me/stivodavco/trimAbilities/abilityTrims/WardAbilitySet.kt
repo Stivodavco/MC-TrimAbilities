@@ -17,6 +17,10 @@ import org.bukkit.inventory.meta.trim.TrimPattern
 class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), Ability, Passive {
     override var cooldownLeft = cooldown
 
+    init {
+        passive()
+    }
+
     override fun internalPassive() {
         val maxHealth = owner.getAttribute(Attribute.MAX_HEALTH)
 
