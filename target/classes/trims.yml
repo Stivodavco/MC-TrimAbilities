@@ -1,3 +1,18 @@
+ward:
+  name: Ward
+  title: Shrieking
+  passive:
+    enabled: true
+    name: Tank
+    description: You get 5 extra hearts.
+  ability:
+    enabled: true
+    name: Sonic Boom
+    description: Shoot a sonic boom towards the direction you are facing at.
+    cooldown: 120
+    range: 25
+    damage: 10
+
 snout:
   name: Snout
   title: Nether Alliance
