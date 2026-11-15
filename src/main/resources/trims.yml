@@ -1,3 +1,19 @@
+flow:
+  name: Flow
+  title: Mobility
+  passive:
+    enabled: true
+    name: Double Jump
+    description: You can jump again mid-air.
+    max-extra-jumps: 1
+    jump-power: 0.7
+  ability:
+    enabled: true
+    name: Dash
+    description: Dash forward.
+    cooldown: 5
+    dash-power: 1.0
+
 wild:
   name: Wild
   title: Nature

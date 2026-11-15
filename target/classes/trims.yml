@@ -1,3 +1,37 @@
+flow:
+  name: Flow
+  title: Mobility
+  passive:
+    enabled: true
+    name: Double Jump
+    description: You can jump again mid-air.
+    max-extra-jumps: 10
+    jump-power: 0.7
+  ability:
+    enabled: true
+    name: Dash
+    description: Dash forward.
+    cooldown: 5
+    dash-power: 1.0
+
+wild:
+  name: Wild
+  title: Nature
+  passive:
+    enabled: true
+    name: Snake Bite
+    description: When attacking a player, there's a 15% chance you inflict poison for 2 seconds unless the player is already poisoned (therefore it does not reset the poison).
+    poison-chance: 15
+    poison-duration-ticks: 40
+    poison-amplifier: 1
+  ability:
+    enabled: true
+    name: Vines
+    description: Stop movement for all players in a 5 block radius for 5 seconds.
+    cooldown: 150
+    activation-time: 5
+    range: 5.0
+
 spire:
   name: Spire
   title: Levitation
@@ -7,7 +41,7 @@ spire:
     description: You take no fall damage.
   ability:
     enabled: true
-    name: Sandstorm
+    name: Levitation Shroud
     description: All players in a 15 block radius get levitation for 10 seconds.
     cooldown: 90
     activation-time: 10
