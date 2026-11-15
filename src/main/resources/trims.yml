@@ -1,3 +1,21 @@
+wild:
+  name: Wild
+  title: Nature
+  passive:
+    enabled: true
+    name: Snake Bite
+    description: When attacking a player, there's a 15% chance you inflict poison for 2 seconds unless the player is already poisoned (therefore it does not reset the poison).
+    poison-chance: 15
+    poison-duration-ticks: 40
+    poison-amplifier: 1
+  ability:
+    enabled: true
+    name: Vines
+    description: Stop movement for all players in a 5 block radius for 5 seconds.
+    cooldown: 150
+    activation-time: 5
+    range: 5.0
+
 spire:
   name: Spire
   title: Levitation
