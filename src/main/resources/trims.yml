@@ -1,3 +1,18 @@
+spire:
+  name: Spire
+  title: Levitation
+  passive:
+    enabled: true
+    name: Feather Falling
+    description: You take no fall damage.
+  ability:
+    enabled: true
+    name: Levitation Shroud
+    description: All players in a 15 block radius get levitation for 10 seconds.
+    cooldown: 90
+    activation-time: 10
+    range: 15.0
+
 silence:
   name: Silence
   title: Invisibility
