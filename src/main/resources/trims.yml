@@ -1,3 +1,18 @@
+bolt:
+  name: Bolt
+  title: Lightning
+  passive:
+    enabled: true
+    name: Thundering hits
+    description: Hitting a player has a 10% chance of summoning thunder at them.
+    lightning-chance: 10
+  ability:
+    enabled: true
+    name: Lightning strike
+    description: Summon thunder at every player in a 10 block radius.
+    cooldown: 120
+    range: 10.0
+
 ward:
   name: Ward
   title: Shrieking
@@ -52,7 +67,7 @@ dune:
     description: Summon a sand shroud inflicting any player within 10 blocks of you with blindness and slowness, while you gain speed.
     cooldown: 85
     activation-time: 5
-    radius: 10.0
+    range: 10.0
     blindness-amplifier: 2
     slowness-amplifier: 2
     speed-amplifier: 2

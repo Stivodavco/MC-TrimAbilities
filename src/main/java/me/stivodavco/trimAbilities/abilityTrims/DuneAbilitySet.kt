@@ -23,7 +23,7 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
     }
 
     override fun internalAbility() {
-        val nearby = owner.getNearbyEntities(RADIUS, RADIUS, RADIUS)
+        val nearby = owner.getNearbyEntities(RANGE, RANGE, RANGE)
 
         for (entity in nearby) {
             if (entity is Player) {
@@ -35,7 +35,7 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
             .colorTransition(Color.fromRGB(189, 169, 57), Color.fromRGB(239, 245, 76), 4f)
             .count(3)
 
-        ParticleUtils.sphere(owner.location, RADIUS, particle)
+        ParticleUtils.sphere(owner.location, RANGE, particle)
 
         owner.addPotionEffect(SPEED)
     }
@@ -49,7 +49,7 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
     }
 
     companion object {
-        val RADIUS = TrimAbilities.getTrimsConfig().getDouble("dune.ability.radius")
+        val RANGE = TrimAbilities.getTrimsConfig().getDouble("dune.ability.range")
 
         val SATURATION = PotionEffect(PotionEffectType.SATURATION, -1, 255, false, false)
 

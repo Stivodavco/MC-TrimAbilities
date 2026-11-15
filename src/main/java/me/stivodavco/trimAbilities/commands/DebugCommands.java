@@ -40,6 +40,7 @@ public class DebugCommands {
                                 item.setItemMeta(meta);
                             }
                         }
+                        PlayerExtKt.setAbilitySet(executor, null);
                         PlayerExtKt.equipSetIfPresent(executor);
 
 //                        ArmorUtils.equipTrimIfPresent(executor);

@@ -4,8 +4,8 @@ import me.stivodavco.trimAbilities.TrimAbilities
 import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
 import me.stivodavco.trimAbilities.abstractClasses.Passive
 import me.stivodavco.trimAbilities.abstractClasses.TimeAbility
+import me.stivodavco.trimAbilities.extensions.abilitySet
 import me.stivodavco.trimAbilities.utilities.RandomnessUtils
-import me.stivodavco.trimAbilities.utilities.Storage
 import org.bukkit.Sound
 import org.bukkit.entity.*
 import org.bukkit.event.EventHandler
@@ -61,13 +61,9 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
     /* EVENTS */
     @EventHandler
     fun onDamage(e: EntityDamageEvent) {
-        if (!passiveEnabled) {
-            return
-        }
-
         val entity = e.entity
         if (entity is Player) {
-            if (Storage.getAbilitySet(entity) is SentryAbilitySet) {
+            if (entity.abilitySet is SentryAbilitySet) {
                 if (e.damageSource.directEntity is Arrow && RandomnessUtils.chance(BLOCK_CHANCE)) {
                     entity.world.playSound(entity.location, Sound.ITEM_SHIELD_BLOCK, 1f, 1f)
                     e.isCancelled = true

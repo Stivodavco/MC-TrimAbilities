@@ -13,7 +13,9 @@ abstract class AbilitySet(owner: Player, val pattern: TrimPattern) : Listener {
     val ticker = AbilityTicker(20, this)
 
     init {
-        Bukkit.getPluginManager().registerEvents(this, TrimAbilities.getInstance())
+        if (this is Passive && passiveEnabled) {
+            Bukkit.getPluginManager().registerEvents(this, TrimAbilities.getInstance())
+        }
     }
 
     fun destroy() {
