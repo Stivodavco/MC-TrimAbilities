@@ -25,9 +25,9 @@ class AbilityActionbar(val owner: Player, val abilitySet: AbilitySet) {
     }
 
     fun getPassiveComponent() : Component {
-        val name = TrimAbilities.getTrimsConfig().getString("${abilitySet.pattern.keyName}.passive.name")
+        val name = TrimAbilities.getTrimsConfig().getString("${abilitySet.pattern.keyName}.passive.name") ?: "N/A"
 
-        return Component.text(" [$name]").
+        return Component.text(name).
             color(TextColor.color(135, 135, 135)).decorate(TextDecoration.ITALIC)
     }
 

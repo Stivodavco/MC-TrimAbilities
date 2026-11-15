@@ -1,3 +1,12 @@
+silence:
+  name: Silence
+  title: Invisibility
+  passive:
+    enabled: true
+    name: Silent & Sneaky
+    description: Unless a player is present in a 15 block radius around you, you are completely hidden to every player, including tablist, your character, armor, and tools you're holding. You have permanent invisibility, but glow when you enter the 15 block range. When you kill someone, your name is not revealed. Placing or breaking blocks is silent.
+    appear-range: 10.0
+
 vex:
   name: Vex
   title: Illusions
