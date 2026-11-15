@@ -1,14 +1,31 @@
+vex:
+  name: Vex
+  title: Illusions
+  passive:
+    enabled: true
+    name: Totem of Chance
+    description: When you're about to die, there's a 30% chance you survive and get healed 4 hearts.
+    revive-chance: 30
+    heal-health: 8
+  ability:
+    enabled: true
+    name: Crushing Fangs
+    description: Summons evoker fangs in a 3x3 radius around the block you are looking at.
+    cooldown: 45
+    range: 10.0
+    extra-damage: 14
+
 bolt:
   name: Bolt
   title: Lightning
   passive:
     enabled: true
-    name: Thundering hits
+    name: Thundering Hits
     description: Hitting a player has a 10% chance of summoning thunder at them.
     lightning-chance: 10
   ability:
     enabled: true
-    name: Lightning strike
+    name: Lightning Strike
     description: Summon thunder at every player in a 10 block radius.
     cooldown: 120
     range: 10.0
@@ -38,7 +55,7 @@ snout:
     description: Piglins never attack you. You can always accept or reject the result of any barter, refunding the gold if you reject.
   ability:
     enabled: true
-    name: Call for help
+    name: Call for Help
     description: Summons 3 piglins and a piglin brute that don't attack you, despawning after 20s.
     cooldown: 120
     activation-time: 20
@@ -77,7 +94,7 @@ sentry:
   title: Archery
   passive:
     enabled: true
-    name: Noclip arrows
+    name: Noclip Arrows
     description: Each time an arrow hits you, there's an 80% chance it does no damage.
     block-chance-percent: 80
   ability:

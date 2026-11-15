@@ -68,7 +68,7 @@ class SnoutAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SNOUT),
     override fun internalPassive() {}
 
     /* HELPER FUNCTIONS */
-    fun despawnPiglins() {
+    private fun despawnPiglins() {
         for (piglin in spawnedPiglins) {
             Particle.POOF.builder().
             location(piglin.location)
@@ -81,7 +81,7 @@ class SnoutAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SNOUT),
         spawnedPiglins.clear()
     }
 
-    fun clearItem(item: ItemStack) {
+    private fun clearItem(item: ItemStack) {
         item.editPersistentDataContainer { pdc: PersistentDataContainer? ->
             pdc!!.remove(KEY)
         }

@@ -10,6 +10,8 @@ import org.bukkit.Particle
 import org.bukkit.Sound
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
+import org.bukkit.damage.DamageSource
+import org.bukkit.damage.DamageType
 import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.trim.TrimPattern
 
@@ -43,7 +45,7 @@ class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), A
 
             for (entity in owner.world.getNearbyLivingEntities(loc, 1.0)) {
                 if (entity != owner) {
-                    entity.damage(DAMAGE)
+                    entity.damage(DAMAGE, DamageSource.builder(DamageType.SONIC_BOOM).withDirectEntity(owner).build())
                 }
             }
         }
