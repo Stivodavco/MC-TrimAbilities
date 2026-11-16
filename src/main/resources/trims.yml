@@ -1,3 +1,12 @@
+wayfinder:
+  name: Wayfinder
+  title: Warping
+  ability:
+    enabled: true
+    name: Lodewarp
+    description: Teleport to the location bound to the lodestone compass you are currently holding.
+    cooldown: 300
+
 host:
   name: Host
   title: Reaping
