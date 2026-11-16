@@ -1,3 +1,20 @@
+host:
+  name: Host
+  title: Reaping
+  passive:
+    enabled: true
+    name: Lifesteal
+    description: Whenever you damage a player, you heal 50% the final damage you inflicted (counted through armor - actual health lost).
+    heal-percent: 50
+  ability:
+    enabled: true
+    name: Power Transfer
+    description: For every player in an 8 block radius, give them weakness and add yourself one level of strength (0 -> I -> II -> III...) for 8 seconds.
+    cooldown: 120
+    activation-time: 8
+    range: 8.0
+    weakness-amplifier: 0
+
 raiser:
   name: Raiser
   title: Impact
