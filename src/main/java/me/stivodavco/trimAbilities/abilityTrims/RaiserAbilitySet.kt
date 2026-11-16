@@ -18,7 +18,7 @@ import org.bukkit.util.Vector
 class RaiserAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.RAISER), Ability, Passive {
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         for (entity in owner.getNearbyEntities(RANGE, RANGE, RANGE)) {
             if (entity is LivingEntity) {
                 entity.damage(DAMAGE, DamageSource.builder(DamageType.MACE_SMASH).withDirectEntity(owner).build())
@@ -34,6 +34,7 @@ class RaiserAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.RAISER
         ParticleUtils.cylinder(owner.location, RANGE, 2.0, particle)
 
         owner.world.playSound(owner.location, Sound.ITEM_MACE_SMASH_GROUND, 1.0f, 0.0f)
+        return true
     }
 
     override fun internalDestroy() {}

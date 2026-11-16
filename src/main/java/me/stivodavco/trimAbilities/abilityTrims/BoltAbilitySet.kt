@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern
 class BoltAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.BOLT), Ability, Passive {
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         for (entity in owner.getNearbyEntities(RANGE, RANGE, RANGE)) {
             if (entity is LivingEntity) {
                 entity.world.spawn(entity.location, LightningStrike::class.java)
@@ -28,6 +28,7 @@ class BoltAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.BOLT), A
 
         val particle = ParticleBuilder(Particle.GLOW_SQUID_INK).extra(0.0)
         ParticleUtils.circle(owner.location, RANGE, particle)
+        return true
     }
 
     override fun internalDestroy() {

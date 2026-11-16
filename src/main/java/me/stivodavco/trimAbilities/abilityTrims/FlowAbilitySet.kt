@@ -20,9 +20,10 @@ class FlowAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.FLOW), A
     var offGround = false
     var jumpInput = false
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val lookVector = owner.location.getDirection()
         owner.velocity = owner.velocity.add(lookVector.multiply(DASH_POWER))
+        return true
     }
 
     override fun internalDestroy() {}

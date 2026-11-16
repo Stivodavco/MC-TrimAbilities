@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffectType
 class EyeAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.EYE), Ability, Passive {
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val startLoc = owner.location
 
         val targetBlock = owner.getTargetBlockExact(MAX_TELEPORT_DIST)
@@ -37,6 +37,10 @@ class EyeAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.EYE), Abi
             }
 
             owner.addPotionEffect(GLOWING)
+            return true
+        } else {
+            owner.playSound(owner.location, Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 1.0f)
+            return false
         }
     }
 

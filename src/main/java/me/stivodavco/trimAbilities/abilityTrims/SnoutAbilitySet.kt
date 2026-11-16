@@ -36,7 +36,7 @@ class SnoutAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SNOUT),
     private val spawnedPiglins: MutableList<Entity> = mutableListOf()
     private var runnable: BukkitTask? = null
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val brute = owner.world.spawn(owner.location, PiglinBrute::class.java)
         brute.isImmuneToZombification = true
         spawnedPiglins.add(brute)
@@ -52,6 +52,7 @@ class SnoutAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SNOUT),
                 despawnPiglins()
             }
         }.runTaskLater(TrimAbilities.getInstance(), activationTime * 20L)
+        return true
     }
 
     override fun internalDestroy() {

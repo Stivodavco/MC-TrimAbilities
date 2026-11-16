@@ -2,7 +2,9 @@ package me.stivodavco.trimAbilities.abstractClasses
 
 import me.stivodavco.trimAbilities.TrimAbilities
 import me.stivodavco.trimAbilities.extensions.keyName
+import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.trim.TrimPattern
+import org.checkerframework.checker.mustcall.qual.Owning
 
 interface Ability {
     val abilityEnabled: Boolean
@@ -21,8 +23,7 @@ interface Ability {
     fun ability(): Boolean {
         if (!abilityEnabled) { return false }
 
-        if (cooldownLeft <= 0) {
-            internalAbility()
+        if (cooldownLeft <= 0 && this is AbilitySet && internalAbility()) {
             reset()
             return true
         }
@@ -35,5 +36,5 @@ interface Ability {
         }
     }
 
-    fun internalAbility()
+    fun internalAbility() : Boolean
 }

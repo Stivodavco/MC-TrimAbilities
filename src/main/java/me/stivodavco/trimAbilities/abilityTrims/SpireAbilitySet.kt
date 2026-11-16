@@ -21,7 +21,7 @@ class SpireAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SPIRE),
     override var active = false
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         for (entity in owner.getNearbyEntities(RANGE, RANGE, RANGE)) {
             if (entity is Player) {
                 entity.addPotionEffect(LEVITATION)
@@ -31,6 +31,7 @@ class SpireAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SPIRE),
         val particle = Particle.END_ROD.builder().extra(0.0)
 
         ParticleUtils.cylinder(owner.location, RANGE, 3.0, particle)
+        return true
     }
 
     override fun internalDestroy() {}

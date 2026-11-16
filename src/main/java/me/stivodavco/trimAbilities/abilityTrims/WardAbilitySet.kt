@@ -33,7 +33,7 @@ class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), A
         }
     }
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val direction = owner.location.direction
         val endLoc = owner.location.add(direction.clone().multiply(RANGE))
 
@@ -54,6 +54,7 @@ class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), A
         ParticleUtils.beam(owner.location, endLoc, particle)
 
         owner.location.world.playSound(owner.location, Sound.ENTITY_WARDEN_SONIC_BOOM, 1f, 1f)
+        return true
     }
 
     override fun internalDestroy() {

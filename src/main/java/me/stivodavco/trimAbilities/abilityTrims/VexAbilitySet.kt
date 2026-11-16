@@ -24,7 +24,7 @@ import org.bukkit.inventory.meta.trim.TrimPattern
 class VexAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.VEX), Ability, Passive {
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         for (entity in owner.getNearbyEntities(RANGE, RANGE, RANGE)) {
             if (entity is LivingEntity) {
                 spawnFangsAtLocation(entity.location)
@@ -35,6 +35,7 @@ class VexAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.VEX), Abi
         val particle = ParticleBuilder(Particle.END_ROD).extra(0.0)
 
         ParticleUtils.circle(owner.location, RANGE, particle)
+        return true
     }
 
     override fun internalDestroy() {

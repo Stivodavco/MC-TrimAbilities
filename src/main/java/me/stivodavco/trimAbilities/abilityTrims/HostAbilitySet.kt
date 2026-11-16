@@ -20,7 +20,7 @@ class HostAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.HOST), T
     override var active = false
     override var cooldownLeft = cooldown
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         var amplifier = -1
 
         val particle = Particle.SCRAPE.builder().count(2).extra(0.0)
@@ -44,6 +44,7 @@ class HostAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.HOST), T
         }
 
         ParticleUtils.sphere(owner.location, RANGE, particle)
+        return true
     }
 
     override fun internalDestroy() {}

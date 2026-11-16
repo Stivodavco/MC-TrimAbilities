@@ -22,7 +22,7 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
         passive()
     }
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val nearby = owner.getNearbyEntities(RANGE, RANGE, RANGE)
 
         for (entity in nearby) {
@@ -38,6 +38,7 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
         ParticleUtils.sphere(owner.location, RANGE, particle)
 
         owner.addPotionEffect(SPEED)
+        return true
     }
 
     override fun internalDestroy() {

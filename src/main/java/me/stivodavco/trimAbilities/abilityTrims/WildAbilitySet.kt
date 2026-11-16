@@ -30,7 +30,7 @@ class WildAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WILD), T
 
     private var runnable: BukkitTask? = null
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         val particle = Particle.DUST.builder().data(DustOptions(Color.GREEN, 2f))
         ParticleUtils.cylinder(owner.location, RANGE, 2.0, particle)
 
@@ -51,6 +51,7 @@ class WildAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WILD), T
                 }.runTaskTimer(TrimAbilities.getInstance(), 1, 10)
             }
         }
+        return true
     }
 
     override fun internalDestroy() {

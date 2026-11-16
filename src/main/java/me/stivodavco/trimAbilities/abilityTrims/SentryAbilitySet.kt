@@ -21,7 +21,7 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
 
     private var runnable: BukkitTask? = null
 
-    override fun internalAbility() {
+    override fun internalAbility() : Boolean {
         runnable = object : BukkitRunnable() {
             override fun run() {
                 if (!active) {
@@ -50,6 +50,7 @@ class SentryAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.SENTRY
                 }
             }
         }.runTaskTimer(TrimAbilities.getInstance(), 0, ARROW_DELAY_TICKS.toLong())
+        return true
     }
 
     override fun internalDestroy() {
