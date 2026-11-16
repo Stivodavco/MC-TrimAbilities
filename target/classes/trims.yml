@@ -1,3 +1,19 @@
+raiser:
+  name: Raiser
+  title: Impact
+  passive:
+    enabled: true
+    name: Resistance
+    description: You never take any knockback.
+  ability:
+    enabled: true
+    name: Ground Slam
+    description: Damage all entities in a 6 block radius, knocking them back.
+    cooldown: 120
+    range: 6.0
+    knockback-power: 2.0
+    damage: 14.0
+
 flow:
   name: Flow
   title: Mobility
@@ -5,7 +21,7 @@ flow:
     enabled: true
     name: Double Jump
     description: You can jump again mid-air.
-    max-extra-jumps: 10
+    max-extra-jumps: 1
     jump-power: 0.7
   ability:
     enabled: true
