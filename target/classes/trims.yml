@@ -1,3 +1,20 @@
+coast:
+  name: Coast
+  title: Oceans
+  passive:
+    enabled: true
+    name: Breathe & Swim
+    description: Water breathing and dolphin's grace.
+    dolphins-grace-amplifier: 2
+  ability:
+    enabled: true
+    name: Guardian Laser
+    description: Shoot a laser damaging the first enemy it hits.
+    cooldown: 120
+    activation-time: 8
+    range: 10
+    damage: 3.0
+
 wayfinder:
   name: Wayfinder
   title: Warping
@@ -5,7 +22,7 @@ wayfinder:
     enabled: true
     name: Lodewarp
     description: Teleport to the location bound to the lodestone compass you are currently holding.
-    cooldown: 300
+    cooldown: 900
 
 host:
   name: Host

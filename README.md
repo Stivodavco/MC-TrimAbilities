@@ -81,7 +81,7 @@ Crouch to get jump boost.
 Dash forward.
 > Cooldown: 5s
 
-### Tide | The trim of Water
+### Tide | The trim of Waterbending
 #### Passive: _One With Water_
 Rain or water heals you.
 #### Ability: _Water Tornado_
@@ -107,12 +107,12 @@ Apply Weakness II for 8 seconds to all entities within an 8 block radius, and ap
 Teleport to the location bound to the lodestone compass you are currently holding.
 > Cooldown: 15m
 
-### Coast | The trim of TBD
-#### Passive: _TBD_
-TBD
-#### Ability: _TBD_
-TBD
-> Cooldown: TBD
+### Coast | The trim of Oceans
+#### Passive: _Breathe & Swim_
+Water breathing and dolphin's grace.
+#### Ability: _Guardian Laser_
+Shoot a laser damaging the first enemy it hits.
+> Cooldown: 2m
 
 ### Shaper | The trim of Earthbending
 #### Passive: _Quick Break_
