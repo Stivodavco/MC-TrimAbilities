@@ -5,7 +5,7 @@ wayfinder:
     enabled: true
     name: Lodewarp
     description: Teleport to the location bound to the lodestone compass you are currently holding.
-    cooldown: 300
+    cooldown: 900
 
 host:
   name: Host

@@ -2,9 +2,7 @@ package me.stivodavco.trimAbilities.abstractClasses
 
 import me.stivodavco.trimAbilities.TrimAbilities
 import me.stivodavco.trimAbilities.extensions.keyName
-import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.trim.TrimPattern
-import org.checkerframework.checker.mustcall.qual.Owning
 
 interface Ability {
     val abilityEnabled: Boolean
