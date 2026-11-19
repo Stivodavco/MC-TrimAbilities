@@ -1,3 +1,19 @@
+shaper:
+  name: Shaper
+  title: Earthbending
+  passive:
+    enabled: true
+    name: Quick Break
+    description: Gain very strong haste (break blocks quickly).
+    haste-amplifier: 255
+  ability:
+    enabled: true
+    name: Short Flight
+    description: You are given the ability to fly for 20 seconds within a 20 block radius.
+    cooldown: 120
+    activation-time: 20
+    range: 20
+
 coast:
   name: Coast
   title: Oceans

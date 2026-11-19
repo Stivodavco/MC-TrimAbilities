@@ -2,7 +2,10 @@ package me.stivodavco.trimAbilities.utilities;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
+
+import java.util.List;
 
 public class ParticleUtils {
     public static void circle(Location center, double radius, ParticleBuilder particle) {
@@ -38,5 +41,37 @@ public class ParticleUtils {
 
             particle.location(loc).spawn();
         }
+    }
+
+    public static void cube(Location fromCorner, Location toCorner, ParticleBuilder particle) {
+        World world = fromCorner.getWorld();
+
+        double x1 = fromCorner.getX(), y1 = fromCorner.getY(), z1 = fromCorner.getZ();
+        double x2 = toCorner.getX(),   y2 = toCorner.getY(),   z2 = toCorner.getZ();
+
+        Location b1 = new Location(world, x1, y1, z1);
+        Location b2 = new Location(world, x2, y1, z1);
+        Location b3 = new Location(world, x2, y1, z2);
+        Location b4 = new Location(world, x1, y1, z2);
+
+        Location t1 = new Location(world, x1, y2, z1);
+        Location t2 = new Location(world, x2, y2, z1);
+        Location t3 = new Location(world, x2, y2, z2);
+        Location t4 = new Location(world, x1, y2, z2);
+
+        beam(b1, b2, particle);
+        beam(b2, b3, particle);
+        beam(b3, b4, particle);
+        beam(b4, b1, particle);
+
+        beam(t1, t2, particle);
+        beam(t2, t3, particle);
+        beam(t3, t4, particle);
+        beam(t4, t1, particle);
+
+        beam(b1, t1, particle);
+        beam(b2, t2, particle);
+        beam(b3, t3, particle);
+        beam(b4, t4, particle);
     }
 }
