@@ -41,8 +41,6 @@ class WardAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.WARD), A
         for (i in 1..RANGE) {
             val loc = ownerLoc.add(direction)
 
-            TrimAbilities.getInstance().logger.info(loc.toString())
-
             for (entity in owner.world.getNearbyLivingEntities(loc, 1.0)) {
                 if (entity != owner) {
                     entity.damage(DAMAGE, DamageSource.builder(DamageType.SONIC_BOOM).withDirectEntity(owner).build())

@@ -153,7 +153,7 @@ silence:
   passive:
     enabled: true
     name: Silent & Sneaky
-    description: Unless a player is present in a 15 block radius around you, you are completely hidden to every player, including tablist, your character, armor, and tools you're holding. You have permanent invisibility, but glow when you enter the 15 block range. When you kill someone, your name is not revealed. Placing or breaking blocks is silent.
+    description: Unless a player is present in a 10 block radius around you, you are completely invisible including armor - otherwise, you appear with invisibility but glowing.
     appear-range: 10.0
 
 vex:
@@ -225,7 +225,7 @@ eye:
     enabled: true
     name: Ender Sight
     description: Teleport to the block you are looking at within an 80 block distance.
-    cooldown: 85
+    cooldown: 240
     max-teleport-distance: 80
     glow-duration-ticks: 200
 
@@ -258,7 +258,7 @@ sentry:
   ability:
     enabled: true
     name: Turret
-    description: You fire arrows for 10 seconds at nearby players/mobs.
+    description: You fire arrows for 30 seconds at nearby players/mobs.
     cooldown: 90
     activation-time: 30
     range: 5.0

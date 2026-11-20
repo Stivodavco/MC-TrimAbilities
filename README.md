@@ -6,7 +6,7 @@
 > Most of the abilities, cooldowns and times are subject to change.
 
 ### Sentry | The trim of Archery
-#### Passive: _Noclip arrows_
+#### Passive: _Noclip Arrows_
 Each time an arrow hits you, there's an 80% chance it does no damage.  
 #### Ability: _Turret_
 You fire arrows for 30 seconds at nearby players/mobs.
@@ -14,47 +14,47 @@ You fire arrows for 30 seconds at nearby players/mobs.
 
 ### Dune | The trim of Sand
 #### Passive: _Sandturation_
-If you're in a desert biome, you get saturation.
+You never lose hunger.
 #### Ability: _Sandstorm_
-For 5 seconds, get Speed III and inflict any players within a 10 block radius with blindness and slowness.  
+Summon a sand shroud inflicting any player within 10 blocks of you with blindness and slowness, while you gain speed.
 > Cooldown: 1m 25s
 
 ### Snout | The trim of Nether Alliance
 #### Passive: _Piglin Commander_
 Piglins never attack you. You can always accept or reject the result of any barter, refunding the gold if you reject.
-#### Ability: _Call for help_
-Summons 3 piglins and a piglin brute that don't attack you despawning after 20s.  
+#### Ability: _Call for Help_
+Summons 3 piglins and a piglin brute that don't attack you, despawning after 20s.  
 > Cooldown: 2m
 
-### Ward | The trim of Senses
+### Ward | The trim of Shrieking
 #### Passive: _Tank_
 You get 5 extra hearts.
-#### Ability: _Sensitive Shriek_
-Get blindness and slowness for 10s. If someone moves during that time in a 25 block radius, your blindness and slowness is removed, you get speed, and the person who moved gets glowing and darkness.  
-> Cooldown: 3m
+#### Ability: _Sonic Boom_
+Shoot a sonic boom towards the direction you are facing at.
+> Cooldown: 2m
 
 ### Eye | The trim of Teleportation
 #### Ability: _Ender Sight_
-Teleport above the block you are looking at within an 80 block distance.
+Teleport to the block you are looking at within an 80 block distance.
 > Cooldown: 4m
 
-### Bolt | The trim of Thunder
-#### Passive: _Thundering hits_
+### Bolt | The trim of Lightning
+#### Passive: _Thundering Hits_
 Hitting a player has a 10% chance of summoning thunder at them.
-#### Ability: _Lightning strike_
+#### Ability: _Lightning Strike_
 Summon thunder at every player in a 10 block radius.  
 > Cooldown: 2m
 
 ### Vex | The trim of Illusions
 #### Passive: _Totem of Chance_
-When you're about to die, there's a 15% chance you survive and get healed 4 hearts.
-#### Ability: _Crushing fangs_
+When you're about to die, there's a 30% chance you survive and get healed 4 hearts.
+#### Ability: _Crushing Fangs_
 Summons evoker fangs in a 3x3 radius around the block you are looking at.  
 > Cooldown: 45s
 
 ### Silence | The trim of Invisibility
 #### Passive: _Silent & Sneaky_
-Unless a player is present in a 15 block radius around you, you are completely hidden to every player, including tablist, your character, armor, and tools you're holding. You have permanent invisibility, but glow when you enter the 15 block range. When you kill someone, your name is not revealed. Placing or breaking blocks is silent.
+Unless a player is present in a 10 block radius around you, you are completely invisible including armor - otherwise, you appear with invisibility but glowing.
 
 ### Spire | The trim of Levitation
 #### Passive: _Feather Falling_
@@ -65,24 +65,24 @@ All players in a 15 block radius get levitation for 10 seconds.
 
 ### Rib | The trim of Unbreaking
 #### Passive: _Tough as Bricks_
-Your armor and tools can take damage, but they never break. When using an anvil, it can never take damage.
+Your armor and tools never get damaged. When using an anvil, it can never take damage.
 
 ### Wild | The trim of Nature
 #### Passive: _Snake Bite_
-When attacking a player, there's a 30% chance you inflict poison for 2 seconds unless the player is already poisoned (therefore it does not reset the poison).
+When attacking a player, there's a 15% chance you inflict poison for 2 seconds unless the player is already poisoned (therefore it does not reset the poison).
 #### Ability: _Vines_
-Stop movement from all players in a 10 block radius for 5 seconds.
+Stop movement for all players in a 5 block radius for 5 seconds.
 > Cooldown: 2m 30s
 
 ### Flow | The trim of Mobility
-#### Passive: _High Jump_
-Crouch to get jump boost.
+#### Passive: _Double Jump_
+You can jump again mid-air.
 #### Ability: _Dash_
 Dash forward.
 > Cooldown: 5s
 
-### Tide | The trim of Waterbending
-#### Passive: _One With Water_
+### Tide | The trim of Water
+#### Passive: _One with Water_
 Rain or water heals you.
 #### Ability: _Water Tornado_
 For 10 seconds, you are immune to any damage, float, and knock back any entities that come close.
@@ -97,9 +97,9 @@ Damage all entities in a 6 block radius, knocking them back.
 
 ### Host | The trim of Reaping
 #### Passive: _Lifesteal_
-Whenever you damage a player, you heal how much damage you inflicted.
+Whenever you damage a player, you heal 50% the final damage you inflicted (counted through armor - actual health lost).
 #### Ability: _Power Transfer_
-Apply Weakness II for 8 seconds to all entities within an 8 block radius, and apply Strength I to yourself for 8 seconds.
+For every player in an 8 block radius, give them weakness and add yourself one level of strength (0 -> I -> II -> III...) for 8 seconds.
 > Cooldown: 2m
 
 ### Wayfinder | The trim of Warping
@@ -116,7 +116,7 @@ Shoot a laser damaging the first enemy it hits.
 
 ### Shaper | The trim of Earthbending
 #### Passive: _Quick Break_
-You always break blocks instantly.
+Gain very strong haste (break blocks quickly).
 #### Ability: _Short Flight_
-You are given the ability to fly for 3 seconds.
+You are given the ability to fly for 20 seconds within a 20 block radius.
 > Cooldown: 2m
