@@ -1,3 +1,11 @@
+rib:
+  name: Rib
+  title: Unbreaking
+  passive:
+    enabled: true
+    name: Tough as Bricks
+    description: Your armor and tools never get damaged. When using an anvil, it can never take damage.
+
 tide:
   name: Tide
   title: Water
