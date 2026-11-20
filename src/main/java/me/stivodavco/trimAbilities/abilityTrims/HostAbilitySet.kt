@@ -52,13 +52,13 @@ class HostAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.HOST), T
     override fun internalPassive() {}
 
     /* EVENTS */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     fun onEntityDamageByEntity(e: EntityDamageByEntityEvent) {
         val attacker = e.damager
         val victim = e.entity
 
         if (attacker == owner && victim is Player) {
-            owner.heal(e.getFinalDamage() * (HEAL_PERCENT / 100))
+            owner.heal(e.getFinalDamage() * (HEAL_PERCENT / 100.0))
 
             val particle = Particle.ELECTRIC_SPARK.builder().extra(0.0)
             ParticleUtils.beam(owner.location.clone().add(0.0, 1.0, 0.0), victim.location.clone().add(0.0, 1.0, 0.0), particle)
@@ -71,7 +71,7 @@ class HostAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.HOST), T
         val RANGE = TrimAbilities.getTrimsConfig().getDouble("host.ability.range")
 
         val WEAKNESS = PotionEffect(PotionEffectType.WEAKNESS,
-            TrimAbilities.getTrimsConfig().getInt("host.ability.activation-time"),
+            TrimAbilities.getTrimsConfig().getInt("host.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("host.ability.weakness-amplifier"))
 
         val HEAL_PERCENT = TrimAbilities.getTrimsConfig().getInt("host.passive.heal-percent")

@@ -55,15 +55,15 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
         val SATURATION = PotionEffect(PotionEffectType.SATURATION, -1, 255, false, false)
 
         val BLINDNESS = PotionEffect(PotionEffectType.BLINDNESS,
-            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time"),
+            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.blindness-amplifier"), false, false)
 
         val SLOWNESS = PotionEffect(PotionEffectType.BLINDNESS,
-            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time"),
+            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.slowness-amplifier"), false, false)
 
         val SPEED = PotionEffect(PotionEffectType.BLINDNESS,
-            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time"),
+            TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.speed-amplifier"), false, false)
     }
 
