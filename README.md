@@ -1,9 +1,6 @@
-# Tricky Trims
-
-
-## Trims and their abilities
+# Trims and their abilities
 > [!IMPORTANT]
-> Most of the abilities, cooldowns and times are subject to change.
+> Most of the abilities, cooldowns and times are subject to change. They have not yet been fully balanced, and many rebalance changes will be coming soon.
 
 ### Sentry | The trim of Archery
 #### Passive: _Noclip Arrows_
