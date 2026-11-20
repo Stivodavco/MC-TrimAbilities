@@ -1,3 +1,20 @@
+tide:
+  name: Tide
+  title: Water
+  passive:
+    enabled: true
+    name: One with Water
+    description: Rain or water heals you.
+    regen-amplifier: 1
+  ability:
+    enabled: true
+    name: Water Tornado
+    description: For 10 seconds, you are immune to any damage, float, and knock back any entities that come close.
+    cooldown: 120
+    activation-time: 10
+    knockback-radius: 2.0
+    knockback-power: 1.0
+
 wayfinder:
   name: Wayfinder
   title: Warping
