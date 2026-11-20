@@ -1,6 +1,6 @@
 name: TrimAbilities
-version: '1.0-SNAPSHOT'
+version: '0.5-BETA'
 main: me.stivodavco.trimAbilities.TrimAbilities
-api-version: '26.2'
+api-version: '1.21.11'
 authors: [ Stivodavco ]
-description: Cool test plugin
+description: Adds unique passive and active abilities when wearing a full set of an armor trim.
