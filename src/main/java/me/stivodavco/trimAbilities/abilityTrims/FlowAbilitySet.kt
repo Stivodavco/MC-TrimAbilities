@@ -1,10 +1,14 @@
 package me.stivodavco.trimAbilities.abilityTrims
 
+import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import me.stivodavco.trimAbilities.TrimAbilities
 import me.stivodavco.trimAbilities.abstractClasses.Ability
 import me.stivodavco.trimAbilities.abstractClasses.AbilitySet
 import me.stivodavco.trimAbilities.abstractClasses.Passive
-import org.bukkit.*
+import org.bukkit.GameMode
+import org.bukkit.Location
+import org.bukkit.Particle
+import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -17,8 +21,8 @@ class FlowAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.FLOW), A
     override var cooldownLeft = cooldown
 
     var availableJumps = MAX_EXTRA_JUMPS
-    var offGround = false
-    var jumpInput = false
+    var airTime = 0
+    var inAir = false
 
     override fun internalAbility() : Boolean {
         val lookVector = owner.location.getDirection()
@@ -32,16 +36,29 @@ class FlowAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.FLOW), A
 
     /* EVENTS */
     @EventHandler
+    fun onPlayerJumpEvent(e: PlayerJumpEvent) {
+        if (e.player != owner) return
+
+        inAir = true
+        airTime = JUMP_DELAY_TICKS - 1
+    }
+
+    @EventHandler
     fun onPlayerMoveEvent(e: PlayerMoveEvent) {
         if (e.player != owner) return
 
-        val belowBlock = e.to.clone().subtract(Location(e.to.world, 0.0, 1.0, 0.0)).block
+        val belowBlock = e.to.clone().subtract(Location(e.to.world, 0.0, 0.1, 0.0)).block
 
-        if (e.hasChangedBlock() && belowBlock.type != Material.AIR) {
-            offGround = false
+        if (e.hasChangedBlock() && !belowBlock.isPassable) {
             availableJumps = MAX_EXTRA_JUMPS
+            airTime = 0
+            inAir = false
         } else if (e.hasChangedBlock()) {
-            offGround = true
+            inAir = true
+        }
+
+        if (inAir) {
+            airTime++
         }
     }
 
@@ -49,10 +66,7 @@ class FlowAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.FLOW), A
     fun onPlayerInputEvent(e: PlayerInputEvent) {
         if (e.player != owner || owner.gameMode == GameMode.CREATIVE) return
 
-        if (!e.input.isJump) jumpInput = false
-
-        if (e.input.isJump && !jumpInput  && offGround && availableJumps > 0 ) {
-            jumpInput = true
+        if (e.input.isJump && availableJumps > 0 && airTime > JUMP_DELAY_TICKS) {
             availableJumps -= 1
 
             owner.velocity = Vector(owner.velocity.x, JUMP_POWER, owner.velocity.z)
@@ -68,6 +82,8 @@ class FlowAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.FLOW), A
         val JUMP_POWER = TrimAbilities.getTrimsConfig().getDouble("flow.passive.jump-power")
 
         val DASH_POWER = TrimAbilities.getTrimsConfig().getDouble("flow.ability.dash-power")
+
+        const val JUMP_DELAY_TICKS = 10
     }
 
 }
