@@ -1,20 +1,3 @@
-tide:
-  name: Tide
-  title: Water
-  passive:
-    enabled: true
-    name: One with Water
-    description: Rain or water heals you.
-    regen-amplifier: 1
-  ability:
-    enabled: true
-    name: Water Tornado
-    description: For 10 seconds, you are immune to any damage, float, and knock back any entities that come close.
-    cooldown: 120
-    activation-time: 10
-    knockback-radius: 2.0
-    knockback-power: 1.0
-
 shaper:
   name: Shaper
   title: Earthbending
@@ -47,6 +30,31 @@ coast:
     activation-time: 8
     range: 10
     damage: 3.0
+
+rib:
+  name: Rib
+  title: Unbreaking
+  passive:
+    enabled: true
+    name: Tough as Bricks
+    description: Your armor and tools never get damaged. When using an anvil, it can never take damage.
+
+tide:
+  name: Tide
+  title: Water
+  passive:
+    enabled: true
+    name: One with Water
+    description: Rain or water heals you.
+    regen-amplifier: 1
+  ability:
+    enabled: true
+    name: Water Tornado
+    description: For 10 seconds, you are immune to any damage, float, and knock back any entities that come close.
+    cooldown: 120
+    activation-time: 10
+    knockback-radius: 2.0
+    knockback-power: 1.0
 
 wayfinder:
   name: Wayfinder

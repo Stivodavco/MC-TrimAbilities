@@ -71,8 +71,14 @@ public class RollCommand {
                             player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1, 1);
                             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
 
-                            Material template = TrimPatternExtKt.getItemMaterial(pattern);
-                            player.give(ItemStack.of(template));
+
+                            if (pattern != null) {
+                                Material material = TrimPatternExtKt.getItemMaterial(pattern);
+
+                                if (material != null) {
+                                    player.give(ItemStack.of(material));
+                                }
+                            }
                         };
 
                         AnimationBuilder animation = new AnimationBuilder();

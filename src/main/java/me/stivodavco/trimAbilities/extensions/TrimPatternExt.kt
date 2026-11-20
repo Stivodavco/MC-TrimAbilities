@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.Registry
-import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.trim.TrimPattern
 
 val TrimPattern.abilitySetClass : Class<out AbilitySet>?
@@ -24,11 +23,11 @@ val TrimPattern.abilitySetClass : Class<out AbilitySet>?
         return clazz
     }
 
-val TrimPattern.itemMaterial : Material
+val TrimPattern.itemMaterial : Material?
     get() {
         val materialKey = NamespacedKey.minecraft("${keyName}_armor_trim_smithing_template")
 
-        return Registry.MATERIAL.get(materialKey)!!
+        return Registry.MATERIAL.get(materialKey)
     }
 
 val TrimPattern.keyName : String

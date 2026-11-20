@@ -10,7 +10,7 @@ var Player.abilitySet: AbilitySet?
     set(new) = Storage.setAbilitySet(this, new)
 
 fun Player.isWearingFullSet() : Boolean {
-    val helmetMeta = inventory.helmet.itemMeta as? ArmorMeta
+    val helmetMeta = inventory.helmet?.itemMeta as? ArmorMeta
     val targetPattern = helmetMeta?.trim?.pattern
 
     if (targetPattern != null) {
@@ -31,7 +31,7 @@ fun Player.isWearingFullSet() : Boolean {
 
 fun Player.equipSetIfPresent() {
     if (isWearingFullSet() && abilitySet == null) {
-        val pattern = (inventory.helmet.itemMeta as? ArmorMeta)?.trim!!.pattern
+        val pattern = (inventory.helmet?.itemMeta as? ArmorMeta)?.trim!!.pattern
 
         val clazz = pattern.abilitySetClass
 

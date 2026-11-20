@@ -58,11 +58,11 @@ class DuneAbilitySet(val owner: Player) : AbilitySet(owner, TrimPattern.DUNE), T
             TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.blindness-amplifier"), false, false)
 
-        val SLOWNESS = PotionEffect(PotionEffectType.BLINDNESS,
+        val SLOWNESS = PotionEffect(PotionEffectType.SLOWNESS,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.slowness-amplifier"), false, false)
 
-        val SPEED = PotionEffect(PotionEffectType.BLINDNESS,
+        val SPEED = PotionEffect(PotionEffectType.SPEED,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.activation-time") * 20,
             TrimAbilities.getTrimsConfig().getInt("dune.ability.speed-amplifier"), false, false)
     }
